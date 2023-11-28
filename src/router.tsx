@@ -20,11 +20,11 @@ export const router = createBrowserRouter([
         element: <Pokemons />
       },
       {
-        path: '/rickandmorty',
+        path: '/rick-and-morty',
         element: <RickAndMorty />
       },
       {
-        path: '/thestarwars',
+        path: '/star-wars',
         element: <TheStarWars />
       }
     ]

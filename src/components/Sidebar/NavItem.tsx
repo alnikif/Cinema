@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export type NavItemProps = {
+type NavItemProps = {
   readonly url: string;
   readonly title: string;
 };
