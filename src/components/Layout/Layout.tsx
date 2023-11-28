@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Header } from './Header/Header';
+import Dropdown from '../Dropdown/Dropdown';
+import { ThemeContext } from '../../Providers/ThemeProvider';
+import { themes } from '../../constants/theme';
 
 export enum NavItems {
   homePage = 'Home Page',
@@ -21,8 +24,16 @@ export const navItemsConfig = [
 ];
 
 export const Layout = () => {
+  const themesOptions = themes.map(({ key, title }) => ({
+    id: key,
+    label: title
+  }));
+
+  const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
+
   return (
     <div>
+      <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
       <Header navItemsConfig={navItemsConfig} />
     </div>
   );
