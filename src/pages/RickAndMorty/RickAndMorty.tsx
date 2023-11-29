@@ -7,7 +7,7 @@ export type RickAndMortyType = {
   name: string;
   gender: string;
   image: string;
-  location: Record<string, string>;
+  location: { name: string; url: string };
   species: string;
   status: string;
   type: string;

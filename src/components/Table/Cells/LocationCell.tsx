@@ -1,10 +1,10 @@
 import React from 'react';
-import { CellWrapper } from '../CellWrapper/CelllWrapper';
+import { Link } from 'react-router-dom';
 
 type LocationCellProps = {
-  readonly location: Record<string, string>;
+  readonly value: { name: string; url: string };
 };
 
-export const LocationCell: React.FC<LocationCellProps> = ({ location }) => {
-  return <CellWrapper>{location}</CellWrapper>;
+export const LocationCell: React.FC<LocationCellProps> = ({ value }) => {
+  return <Link to={value.url}>{value.name}</Link>;
 };
