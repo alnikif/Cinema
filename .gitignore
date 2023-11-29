@@ -409,6 +409,9 @@ FodyWeavers.xsd
 # production
 /build
 
+.idea
+
+
 # misc
 .DS_Store
 .env.local
