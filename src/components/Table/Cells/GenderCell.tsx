@@ -6,5 +6,5 @@ type GenderCellProps = {
 };
 
 export const GenderCell: React.FC<GenderCellProps> = ({ gender }) => {
-  return <CellWrapper>{gender}</CellWrapper>;
+  return <div>{gender}</div>;
 };

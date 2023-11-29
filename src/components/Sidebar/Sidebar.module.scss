@@ -1,6 +1,7 @@
+@import '../../constants/themeTokens.module.scss';
+
 .SidebarContainer{
   width: 100%;
-  background-color: black;
   margin: 0 auto;
   padding: 10px;
   display: flex;
@@ -11,7 +12,6 @@
   a{
     text-decoration: none;
     font-weight: bold;
-    color: white;
-
+    color: $header-color;
   }
 }

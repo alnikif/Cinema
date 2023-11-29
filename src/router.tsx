@@ -8,11 +8,10 @@ import App from './App';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
     element: <App />,
     children: [
       {
-        path: '/homepage',
+        path: '/',
         element: <HomePage />
       },
       {

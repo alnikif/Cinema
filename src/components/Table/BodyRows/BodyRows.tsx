@@ -42,7 +42,7 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
             case CellType.image:
               return <ImageCell image={bodyCell.value as string} />;
             case CellType.location:
-              return <LocationCell location={bodyCell.value as Record<string, string>} />;
+              return <LocationCell value={bodyCell.value as { name: string; url: string }} />;
             case CellType.species:
               return <SpeciesCell species={bodyCell.value as string} />;
             case CellType.status:
