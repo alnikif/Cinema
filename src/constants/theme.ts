@@ -20,17 +20,33 @@ export const themesTokensConstants = {
 
     // checkbox & slider
     '--checkbox-background': '#6370f0',
-    '--checkbox-color': '#6370f0'
+    '--checkbox-color': '#6370f0',
+
+    //table
+    '--table-row-background': '#fff',
+    '--table-row-color': '#808080',
+    '--table-row-border': '1px solid #6370f0',
+
+    //card
+    '--card-background': '#6370f0'
   },
   [Themes.dark]: {
     // header
-    '--header-background': '#004c00',
-    '--dropdown-background': '#004c00',
+    '--header-background': '#710C04',
+    '--dropdown-background': '#710C04',
     '--header-color': '#fff',
 
     // checkbox & slider
     '--checkbox-background': '#000000',
-    '--checkbox-color': '#000000'
+    '--checkbox-color': '#000000',
+
+    //table
+    '--table-row-background': '#fffeee',
+    '--table-row-color': '#000',
+    '--table-row-border': '1px solid #710C04',
+
+    //card
+    '--card-background': '#710C04'
   }
 };
 

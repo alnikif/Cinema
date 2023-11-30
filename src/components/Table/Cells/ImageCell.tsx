@@ -7,7 +7,7 @@ type ImageCellProps = {
 export const ImageCell: React.FC<ImageCellProps> = ({ image }) => {
   return (
     <div>
-      <img src={image} alt="Flag" />
+      <img src={image} alt="image" />
     </div>
   );
 };

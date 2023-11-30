@@ -1,5 +1,5 @@
 export enum CellType {
-  id = 'id',
+  link = 'link',
   name = 'name',
   gender = 'gender',
   image = 'image',

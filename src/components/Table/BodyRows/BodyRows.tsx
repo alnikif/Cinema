@@ -9,11 +9,13 @@ import { LocationCell } from '../Cells/LocationCell';
 import { SpeciesCell } from '../Cells/SpeciesCell';
 import { StatusCell } from '../Cells/StatusCell';
 import { TypeCell } from '../Cells/TypeCell';
+import { LinkCell } from '../Cells/LinkCell';
 
 export type BodyCellType = {
-  key: number;
+  key: string;
   cellType: CellType;
   value: unknown;
+  label?: string;
 };
 
 export type BodyRowType = {
@@ -33,8 +35,8 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
       {bodyRow.cells.map((bodyCell: BodyCellType) => {
         const cellContent = () => {
           switch (bodyCell.cellType) {
-            case CellType.id:
-              return <IdCell id={bodyCell.value as number} />;
+            case CellType.link:
+              return <LinkCell link={bodyCell.value as string} label={bodyCell.label as string} />;
             case CellType.name:
               return <NameCell name={bodyCell.value as string} />;
             case CellType.gender:
@@ -54,7 +56,7 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
           }
         };
 
-        return <CellWrapper key={String(bodyCell.key)}>{cellContent()}</CellWrapper>;
+        return <CellWrapper key={Number(bodyCell.key)}>{cellContent()}</CellWrapper>;
       })}
     </>
   );
