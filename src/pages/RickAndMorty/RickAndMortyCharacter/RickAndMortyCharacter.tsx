@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CellType } from '../../components/Table/CellType';
+import { CellType } from '../../../components/Table/CellType';
 import { useParams } from 'react-router-dom';
 import styles from './RickAndMortyCharacter.module.scss';
-import { Card } from '../../components/Cards/Card/Card';
+import { Card } from '../../../components/Cards/Card/Card';
 
 export type RickAndMortyType = {
   id: number;

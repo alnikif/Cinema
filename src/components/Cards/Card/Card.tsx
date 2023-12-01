@@ -1,5 +1,5 @@
 import React from 'react';
-import { RickAndMortyType } from '../../../pages/RickAndMorty/RickAndMortyCharacter';
+import { RickAndMortyType } from '../../../pages/RickAndMorty/RickAndMortyCharacter/RickAndMortyCharacter';
 import styles from './Card.module.scss';
 
 export const Card: React.FC<{ readonly characterData: RickAndMortyType }> = ({ characterData }) => {

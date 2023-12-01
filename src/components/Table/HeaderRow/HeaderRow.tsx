@@ -1,13 +1,10 @@
 import React from 'react';
 import { NameCell } from '../Cells/NameCell';
-import { CellType } from '../CellType';
 import { CellWrapper } from '../CellWrapper/CelllWrapper';
 
 export type HeaderCellType = {
-  key: string;
+  id: string;
   label: string;
-  cellType: CellType;
-  width: number;
 };
 
 type HeaderRowCellType = {
@@ -20,7 +17,7 @@ export const HeaderRow: React.FC<HeaderRowCellType> = (props) => {
   return (
     <>
       {headerRow.map((headerCell) => (
-        <CellWrapper key={headerCell.key}>
+        <CellWrapper key={headerCell.id}>
           <NameCell name={headerCell.label} />
         </CellWrapper>
       ))}

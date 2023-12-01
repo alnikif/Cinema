@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './Table.module.scss';
-import { HeaderCellType, HeaderRow } from './HeaderRow/HeaderRow';
+import { HeaderRow } from './HeaderRow/HeaderRow';
 import { BodyRows, BodyRowType } from './BodyRows/BodyRows';
+import { CellType } from './CellType';
 
-type TableProps = {
-  readonly title: string;
-  readonly headerRow: HeaderCellType[];
-  readonly bodyRows: BodyRowType[];
+type DataItemType = {
+  id: string | number;
+} & Record<string, unknown>;
+
+type TableConfigType<T> = {
+  id: string;
+  dataKey: string;
+  label: string;
+  cellType: CellType;
+  width: number;
+  getCellValue?: (itemData: T) => string;
 };
 
-export const Table: React.FC<TableProps> = (props) => {
-  const { title, headerRow, bodyRows } = props;
+type TableProps<T> = {
+  readonly title: string;
+  readonly tableConfig: TableConfigType<T>[];
+  readonly data: T[];
+};
 
-  const gridTemplateColumns = headerRow.reduce((acc, cellConfig) => `${acc} ${cellConfig.width}fr`, '');
+const NOOP = () => {
+  //
+};
+
+export const Table = <T extends DataItemType>(props: TableProps<T>) => {
+  const { title, tableConfig, data } = props;
+
+  const headerRow = useMemo(() => tableConfig.map(({ id, label }) => ({ id, label })), [tableConfig]);
+  const gridTemplateColumns = useMemo(() => tableConfig.reduce((acc, column) => `${acc} ${column.width}fr`, ''), [tableConfig]);
+
+  const bodyRows = useMemo(
+    () =>
+      data.reduce((acc: BodyRowType[], dataItem) => {
+        const rowCells = tableConfig.map((column) => {
+          const { id, dataKey, cellType, label, getCellValue = NOOP } = column;
+          const rowKey = `${id}/${dataKey}`;
+          const cellValue = getCellValue(dataItem) || dataItem[dataKey] || '';
+
+          return {
+            key: rowKey,
+            columnKey: id,
+            cellType,
+            value: cellValue,
+            label
+          };
+        });
+
+        const bodyRow = { key: String(dataItem.id), cells: rowCells };
+
+        return [...acc, bodyRow];
+      }, []),
+    [data, tableConfig]
+  );
 
   return (
     <div className={styles.tableContainer}>

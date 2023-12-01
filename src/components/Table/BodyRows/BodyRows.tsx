@@ -2,7 +2,6 @@ import React from 'react';
 import { CellType } from '../CellType';
 import { NameCell } from '../Cells/NameCell';
 import { ImageCell } from '../Cells/ImageCell';
-import { IdCell } from '../Cells/IdCell';
 import { CellWrapper } from '../CellWrapper/CelllWrapper';
 import { GenderCell } from '../Cells/GenderCell';
 import { LocationCell } from '../Cells/LocationCell';
@@ -36,7 +35,7 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
         const cellContent = () => {
           switch (bodyCell.cellType) {
             case CellType.link:
-              return <LinkCell link={bodyCell.value as string} label={bodyCell.label as string} />;
+              return <LinkCell link={bodyCell.value as string} />;
             case CellType.name:
               return <NameCell name={bodyCell.value as string} />;
             case CellType.gender:
