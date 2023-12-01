@@ -1,32 +1,8 @@
 @import '../../constants/themeTokens.module.scss';
 
-
 .CharacterWrapper{
   width: 350px;
   background-color: $card-background;
   margin: 50px auto;
-  //height: 500px;
   padding: 30px 5px;
-}
-
-.CharacterCard{
-  width: 300px;
-  margin: 0 auto;
-  border: 2px solid #000;
-  text-align: center;
-  padding-bottom: 7px;
-  background-color: white;
-  box-shadow: 10px 10px 5px black;
-}
-.CharacterInfo{
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  div{
-    background-color: #61dafb;
-    color: white;
-    padding: 4px;
-    border-radius: 5px;
-    margin: 5px;
-  }
 }
