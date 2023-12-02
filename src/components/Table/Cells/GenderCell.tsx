@@ -1,5 +1,5 @@
 import React from 'react';
-import { CellWrapper } from '../CellWrapper/CelllWrapper';
+import { CellWrapper } from '../CellWrappers/CellWrapper/CelllWrapper';
 
 type GenderCellProps = {
   readonly gender: string | number;

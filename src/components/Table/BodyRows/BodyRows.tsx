@@ -2,7 +2,7 @@ import React from 'react';
 import { CellType } from '../CellType';
 import { NameCell } from '../Cells/NameCell';
 import { ImageCell } from '../Cells/ImageCell';
-import { CellWrapper } from '../CellWrapper/CelllWrapper';
+import { CellWrapper } from '../CellWrappers/CellWrapper/CelllWrapper';
 import { GenderCell } from '../Cells/GenderCell';
 import { LocationCell } from '../Cells/LocationCell';
 import { SpeciesCell } from '../Cells/SpeciesCell';

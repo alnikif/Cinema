@@ -25,7 +25,7 @@ export const themesTokensConstants = {
     //table
     '--table-row-background': '#fff',
     '--table-row-color': '#808080',
-    '--table-row-border': '1px solid #6370f0',
+    '--table-row-border': '1px solid #000',
 
     //card
     '--card-background': '#6370f0'
@@ -43,7 +43,7 @@ export const themesTokensConstants = {
     //table
     '--table-row-background': '#fffeee',
     '--table-row-color': '#000',
-    '--table-row-border': '1px solid #710C04',
+    '--table-row-border': '1px solid #000',
 
     //card
     '--card-background': '#710C04'

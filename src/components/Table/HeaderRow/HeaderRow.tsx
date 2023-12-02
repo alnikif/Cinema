@@ -1,6 +1,7 @@
 import React from 'react';
 import { NameCell } from '../Cells/NameCell';
-import { CellWrapper } from '../CellWrapper/CelllWrapper';
+import { CellWrapper } from '../CellWrappers/CellWrapper/CelllWrapper';
+import { HeaderCellWrapper } from '../CellWrappers/HeaderCellWrapper/HeaderCellWrapper';
 
 export type HeaderCellType = {
   id: string;
@@ -17,9 +18,9 @@ export const HeaderRow: React.FC<HeaderRowCellType> = (props) => {
   return (
     <>
       {headerRow.map((headerCell) => (
-        <CellWrapper key={headerCell.id}>
+        <HeaderCellWrapper key={headerCell.id}>
           <NameCell name={headerCell.label} />
-        </CellWrapper>
+        </HeaderCellWrapper>
       ))}
     </>
   );
