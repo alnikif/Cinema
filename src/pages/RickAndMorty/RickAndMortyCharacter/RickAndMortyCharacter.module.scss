@@ -1,0 +1,8 @@
+@import '../../../constants/themeTokens.module';
+
+.CharacterWrapper{
+  width: 350px;
+  background-color: $card-background;
+  margin: 50px auto;
+  padding: 30px 5px;
+}

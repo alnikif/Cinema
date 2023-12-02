@@ -1,3 +1,5 @@
+@import '../../constants/themeTokens.module.scss';
+
 .dropdown {
   border: 0.5px solid #cccccc;
   border-radius: 4px;
@@ -7,6 +9,7 @@
   width: 120px;
   display: flex;
   flex-direction: column;
+  background-color: $dropdown-background;
 }
 
 .dropdownHeader {
@@ -18,8 +21,9 @@
 }
 
 .dropdownBody {
-  border-top: 1px solid #E5E8EC;
+  border: 1px solid #E5E8EC;
   display: none;
+  text-align: center;
   z-index: 1;
 }
 

@@ -5,14 +5,14 @@ import { Pokemons } from './pages/Pokemons/Pokemons';
 import { RickAndMorty } from './pages/RickAndMorty/RickAndMorty';
 import { TheStarWars } from './pages/TheStarWars/TheStarWars';
 import App from './App';
+import { RickAndMortyCharacter } from './pages/RickAndMorty/RickAndMortyCharacter/RickAndMortyCharacter';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
     element: <App />,
     children: [
       {
-        path: '/homepage',
+        path: '/',
         element: <HomePage />
       },
       {
@@ -26,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/star-wars',
         element: <TheStarWars />
+      },
+      {
+        path: '/rick-and-morty/:characterId',
+        element: <RickAndMortyCharacter />
       }
     ]
   }

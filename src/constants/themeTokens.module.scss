@@ -1,5 +1,10 @@
 // ****** BUTTONS PRIMARY ****** //
-$button-background: var(--button-background, #6370f0);
-$button-background-hover: var(--button-background-hover, hsla(215, 5%, 35%, 1));
-$checkbox-background: var(--checkbox-background, #6370f0);
+$header-background: var(--header-background, #6370f0);
+$dropdown-background: var(--dropdown-background, #6370f0);
+$header-color: var(--header-color, #ffe4c4);
 $checkbox-color: var(--checkbox-color, #6370f0);
+$table-row-background: var(--table-row-background, #fff);
+$table-row-color: var(--table-row-color, #808080);
+$table-row-border: var(--table-row-border, '1px solid #000');
+$card-background: var(--card-background, #6370f0)
+
