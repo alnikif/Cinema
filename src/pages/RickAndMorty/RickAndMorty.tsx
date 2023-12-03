@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
 import { Table } from '../../components/Table/Table';
-import { headerRickAndMortyRowConfig } from './tableConfig';
+import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
 import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { Cards } from '../../components/Cards/Cards';
@@ -33,8 +33,6 @@ const defaultView = {
   },
 };
 
-
-
 export const RickAndMorty = () => {
   const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyType[]>([]);
   const [error, setError] = useState<Error | null>(null);
@@ -46,9 +44,6 @@ export const RickAndMorty = () => {
     id: key,
     label: title
   }));
-
-
-
 
   useEffect(() => {
     setLoading(true);
