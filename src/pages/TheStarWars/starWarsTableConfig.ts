@@ -8,7 +8,7 @@ export const headerStarWarsRowConfig = [
     label: 'View character',
     cellType: CellType.link,
     width: 3,
-    getCellValue: (itemData: StarWarsType) => `/rick-and-morty/${itemData.id}`
+    getCellValue: (itemData: StarWarsType) => `/star-wars/${itemData.id}`
   },
   { id: 'name', dataKey: 'name', label: 'Character name', cellType: CellType.name, width: 2 },
   { id: 'gender', dataKey: 'gender', label: 'Gender', cellType: CellType.gender, width: 1 },
