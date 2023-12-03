@@ -1,5 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import cx from 'classnames';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 import styles from './Dropdown.module.scss';
 
 type OptionItemType<T> = {
@@ -32,13 +35,16 @@ const Dropdown = <T extends unknown>(props: DropdownPropsTypes<T>) => {
 
     return (
         <div className={styles.dropdown}>
+          <div className={styles.dropdownHeaderWrapper}>
+            <FontAwesomeIcon icon={faChevronCircleDown} />
             <div
-                className={styles.dropdownHeader}
-                onClick={onToggleDropdown}
+              className={styles.dropdownHeader}
+              onClick={onToggleDropdown}
             >
-                {selectedOption ? selectedOption.label : "Please select some option"}
-                <i className={`fa fa-chevron-right icon ${isOpen && "open"}`} />
+              {selectedOption && selectedOption.label}
+              <i className={`${isOpen && "open"}`} />
             </div>
+          </div>
             <div className={cx(styles.dropdownBody, { [styles.open]: isOpen })}>
                 {options.map(item => (
                     <div

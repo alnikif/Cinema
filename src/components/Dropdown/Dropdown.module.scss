@@ -12,6 +12,12 @@
   background-color: $dropdown-background;
 }
 
+.dropdownHeaderWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdownHeader {
   padding: 10px;
   cursor: pointer;

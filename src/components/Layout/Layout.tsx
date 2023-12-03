@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
+
 import { Header } from './Header/Header';
 import Dropdown from '../Dropdown/Dropdown';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
-import { inspect } from 'util';
 import styles from './Layout.module.scss';
 
 export enum NavItems {

@@ -1,5 +1,9 @@
 import React from 'react';
 
 export const Pokemons = () => {
-  return <div>Pokemons</div>;
+  return(
+    <div>
+      Pokemons
+    </div>
+  )
 };

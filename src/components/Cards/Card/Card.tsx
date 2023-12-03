@@ -13,7 +13,7 @@ export const Card: React.FC<{ readonly characterData: RickAndMortyType }> = ({ c
         <div>{species}</div>
         <div>{status}</div>
       </div>
-      <div>Location: {location.name}</div>
+      <div className={styles.CharacterLocation}>Location: {location.name}</div>
     </div>
   );
 };
