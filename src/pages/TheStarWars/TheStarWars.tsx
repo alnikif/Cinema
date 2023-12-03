@@ -4,6 +4,8 @@ import axios from 'axios';
 import { StarWarsType } from '../../types/starWarsTypes';
 import { Table } from '../../components/Table/Table';
 import { headerStarWarsRowConfig } from './starWarsTableConfig';
+import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
+
 
 
 
@@ -27,11 +29,10 @@ export const TheStarWars = () => {
     });
 }, []);
 
-  console.log(starWarsData)
-
-
   return (
     <div>
+      <StarWarsCards title='The Star Wars' data={starWarsData} /> :
+
       <Table title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />
     </div>
   )

@@ -2,6 +2,7 @@ export type StarWarsType = {
   affiliations: string[];
   apprentices: string[];
   born: number;
+  class?: string;
   bornLocation: string;
   image: string;
   cybernetics: string;

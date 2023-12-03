@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CellType } from '../CellType';
 import { NameCell } from '../Cells/NameCell';
 import { ImageCell } from '../Cells/ImageCell';
@@ -9,6 +10,12 @@ import { SpeciesCell } from '../Cells/SpeciesCell';
 import { StatusCell } from '../Cells/StatusCell';
 import { TypeCell } from '../Cells/TypeCell';
 import { LinkCell } from '../Cells/LinkCell';
+import { ClassCell } from '../Cells/ClassCell';
+import { HomeWorldCell } from '../Cells/HomeWorldCell';
+import { ApprenticesCell } from '../Cells/ApprenticesCell';
+import { CyberneticsCell } from '../Cells/CyberneticsCell';
+import { MastersCell } from '../Cells/MastersCell';
+
 
 export type BodyCellType = {
   key: string;
@@ -50,6 +57,18 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
               return <StatusCell status={bodyCell.value as string} />;
             case CellType.type:
               return <TypeCell type={bodyCell.value as string} />;
+            case CellType.class:
+              return <ClassCell class={bodyCell.value as string} />;
+            case CellType.homeworld:
+              return <HomeWorldCell homeworld={bodyCell.value as string} />;
+            case CellType.apprentices:
+              return <ApprenticesCell apprentices={bodyCell.value as string[] | undefined} />;
+            case CellType.cybernetics:
+              return <CyberneticsCell cybernetics={bodyCell.value as string} />;
+            case CellType.masters:
+              return <MastersCell masters={bodyCell.value as string[] | undefined} />;
+            case CellType.wiki:
+              return <LinkCell title='link to wiki' link={bodyCell.value as string} />;
             default:
               null;
           }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CellType } from '../../../components/Table/CellType';
 import { useParams } from 'react-router-dom';
 import styles from './RickAndMortyCharacter.module.scss';
-import { Card } from '../../../components/Cards/Card/Card';
+import { RickAndMortyCard } from '../../../components/Cards/RickAndMortyCards/Card/RickAndMortyCard';
 
 export type RickAndMortyType = {
   id: number;
@@ -50,7 +50,7 @@ export const RickAndMortyCharacter = () => {
 
   return (
     <div className={styles.CharacterWrapper}>
-      <Card characterData={rickAndMortyCharacter} />
+      <RickAndMortyCard characterData={rickAndMortyCharacter} />
     </div>
   );
 };

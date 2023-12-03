@@ -5,7 +5,7 @@ import { Table } from '../../components/Table/Table';
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
 import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
-import { Cards } from '../../components/Cards/Cards';
+import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import styles from './RickAndMorty.module.scss'
 
@@ -70,7 +70,7 @@ export const RickAndMorty = () => {
       </div>
 
       {view === 'card' ?
-        <Cards title="Rick and Morty" data={rickAndMortyData} /> :
+        <RickAndMortyCards title="Rick and Morty" data={rickAndMortyData} /> :
         <Table title="Rick and Morty" data={rickAndMortyData} tableConfig={headerRickAndMortyRowConfig} />
       }
 
