@@ -1,24 +1,39 @@
-import React from 'react';
-
-import { StarWarsCard } from './Card/StarWarsCard'
-import styles from './StarWarsCards.module.scss'
+import React, { ReactNode } from 'react';
+import { StarWarsCard } from './Card/StarWarsCard';
 import { StarWarsType } from '../../../types/starWarsTypes';
+// import { ListContainer } from '../../ListContainer/ListContainer';
+import { withListLayout } from '../../ListContainer/ListContainer';
+import styles from './StarWarsCards.module.scss';
 
 export type CardsPropsType = {
   readonly data: StarWarsType[];
-  readonly title: string
-}
+  readonly title: string;
+};
+
+const StarWarsListLayout = ({ children }: { readonly children: ReactNode }) => <div className={styles.listContainer}>{children}</div>;
+
+// HOC High Order Components
+// const StarWarsList = withListLayout(StarWarsListLayout);
+const StarWarsList = withListLayout();
+
+// export const StarWarsCards: React.FC<CardsPropsType> = ({ data, title }) => {
+//   return (
+//     <ListContainer
+//       title='The Star Wars'
+//       data={data}
+//       listLayout={StarWarsListLayout}
+//     >
+//       {(listItem) => (
+//         <StarWarsCard key={listItem.id} characterData={listItem} />
+//       )}
+//     </ListContainer>
+//   );
+// }
 
 export const StarWarsCards: React.FC<CardsPropsType> = ({ data, title }) => {
   return (
-    <div className={styles.CardsContainer}>
-      <h2>{title}</h2>
-      <div className={styles.CardsWrapper}>
-        {data.map(card => (
-          <StarWarsCard key={card.id} characterData={card} />
-        ))}
-      </div>
-    </div>
-
+    <StarWarsList title="The Star Wars" data={data}>
+      {(listItem) => <StarWarsCard key={listItem.id} characterData={listItem} />}
+    </StarWarsList>
   );
-}
+};
