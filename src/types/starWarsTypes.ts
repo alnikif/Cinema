@@ -1,0 +1,22 @@
+export type StarWarsType = {
+  affiliations: string[];
+  apprentices: string[];
+  born: number;
+  class?: string;
+  bornLocation: string;
+  image: string;
+  cybernetics: string;
+  died: number;
+  diedLocation: string;
+  eyeColor: string;
+  gender: string;
+  hairColor: string;
+  height: string;
+  homeworld: string;
+  id: number;
+  name: string;
+  masters: string[];
+  skinColor: string;
+  species: string;
+  wiki:string;
+};

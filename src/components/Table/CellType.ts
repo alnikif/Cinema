@@ -6,5 +6,20 @@ export enum CellType {
   location = 'location',
   species = 'species',
   status = 'status',
-  type = 'type'
+  type = 'type',
+  affiliations = 'affiliations',
+  apprentices = 'apprentices',
+  born = 'born',
+  bornLocation = 'bornLocation',
+  cybernetics = 'cybernetics',
+  died = 'died',
+  diedLocation = 'diedLocation',
+  eyeColor = 'eyeColor',
+  hairColor = 'hairColor',
+  height = 'height',
+  homeworld = 'homeworld',
+  masters = 'masters',
+  skinColor = 'skinColor',
+  wiki = 'wiki',
+  class = 'class'
 }

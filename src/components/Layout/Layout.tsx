@@ -5,6 +5,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
 import styles from './Layout.module.scss';
+import { ViewContext, views } from '../../Providers/ViewProvider';
 
 export enum NavItems {
   homePage = 'Home Page',
@@ -33,6 +34,13 @@ export const Layout = () => {
 
   const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
 
+  const { view, setView } = useContext(ViewContext);
+
+  const viewsOptions = views.map(({ key, title }) => ({
+    id: key,
+    label: title
+  }));
+
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.headerWrapper}>
@@ -40,6 +48,9 @@ export const Layout = () => {
       </div>
       <div className={styles.dropdownWrapper}>
         <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
+      </div>
+      <div className={styles.dropdownContainer}>
+        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
     </div>
   );

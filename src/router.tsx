@@ -6,6 +6,7 @@ import { RickAndMorty } from './pages/RickAndMorty/RickAndMorty';
 import { TheStarWars } from './pages/TheStarWars/TheStarWars';
 import App from './App';
 import { RickAndMortyCharacter } from './pages/RickAndMorty/RickAndMortyCharacter/RickAndMortyCharacter';
+import { TheStarWarsCharacter } from './pages/TheStarWars/TheStarWarsCharacter/TheStarWarsCharacter';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: '/star-wars',
         element: <TheStarWars />
+      },
+      {
+        path: '/star-wars/:characterId',
+        element: <TheStarWarsCharacter />
       },
       {
         path: '/rick-and-morty/:characterId',

@@ -1,8 +1,8 @@
 import React from 'react';
-import { RickAndMortyType } from '../../../pages/RickAndMorty/RickAndMortyCharacter/RickAndMortyCharacter';
-import styles from './Card.module.scss';
+import { RickAndMortyType } from '../../../../types/rickAndMortyTypes';
+import styles from './RickAndMortyCard.module.scss';
 
-export const Card: React.FC<{ readonly characterData: RickAndMortyType }> = ({ characterData }) => {
+export const RickAndMortyCard: React.FC<{ readonly characterData: RickAndMortyType }> = ({ characterData }) => {
   const { image, name, gender, species, status, location } = characterData;
   return (
     <div className={styles.CharacterCard}>
@@ -13,7 +13,7 @@ export const Card: React.FC<{ readonly characterData: RickAndMortyType }> = ({ c
         <div>{species}</div>
         <div>{status}</div>
       </div>
-      <div className={styles.CharacterLocation}>Location: {location.name}</div>
+      <div className={styles.CharacterLocation}>Location: {location?.name}</div>
     </div>
   );
 };

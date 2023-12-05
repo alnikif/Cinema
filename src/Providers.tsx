@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import ThemeProvider from './Providers/ThemeProvider';
+import { ViewProvider } from './Providers/ViewProvider';
 
 type ProvidersType = {
   readonly children: ReactNode;
@@ -8,7 +9,12 @@ type ProvidersType = {
 const Providers: FC<ProvidersType> = (props) => {
   const { children } = props;
 
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return(
+    <ThemeProvider>
+      <ViewProvider>
+        {children}
+      </ViewProvider>
+    </ThemeProvider>)
 };
 
 export default Providers;

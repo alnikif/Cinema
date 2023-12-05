@@ -1,4 +1,4 @@
-type LocationType = {
+export type LocationType = {
   name: string;
   url: string;
 };
