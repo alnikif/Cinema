@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Table } from '../../components/Table/Table';
@@ -7,15 +7,20 @@ import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
 import Dropdown from '../../components/Dropdown/Dropdown';
-import styles from './RickAndMorty.module.scss'
-import { ViewContext, views } from '../../Providers/ViewProvider';
-import { ThemeContext } from '../../Providers/ThemeProvider';
+import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
+import styles from './RickAndMorty.module.scss';
 
 export const RickAndMorty = () => {
   const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyType[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const { view, setView } = useContext(ViewContext);
+
+  const viewsOptions = views.map(({ key, title }) => ({
+    id: key,
+    label: title
+  }));
 
   useEffect(() => {
     setLoading(true);
@@ -35,16 +40,14 @@ export const RickAndMorty = () => {
       });
   }, []);
 
-  const {view} = useContext(ViewContext)
-
   return (
     <>
+      <div className={styles.dropdownContainer}>
+        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+      </div>
 
-
-      {view === 'card' ?
-        <RickAndMortyCards title="Rick and Morty" data={rickAndMortyData} /> :
-        <Table title="Rick and Morty" data={rickAndMortyData} tableConfig={headerRickAndMortyRowConfig} />
-      }
+      {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={rickAndMortyData} />}
+      {view === PageViews.table && <Table title="Rick and Morty" data={rickAndMortyData} tableConfig={headerRickAndMortyRowConfig} />}
 
       <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 

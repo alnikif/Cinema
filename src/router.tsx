@@ -1,12 +1,13 @@
-import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+
+import App from './App';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Pokemons } from './pages/Pokemons/Pokemons';
 import { RickAndMorty } from './pages/RickAndMorty/RickAndMorty';
 import { TheStarWars } from './pages/TheStarWars/TheStarWars';
-import App from './App';
-import { RickAndMortyCharacter } from './pages/RickAndMorty/RickAndMortyCharacter/RickAndMortyCharacter';
-import { TheStarWarsCharacter } from './pages/TheStarWars/TheStarWarsCharacter/TheStarWarsCharacter';
+import { RickAndMortyCharacter } from './pages/RickAndMortyCharacter/RickAndMortyCharacter';
+import { TheStarWarsCharacter } from './pages/TheStarWarsCharacter/TheStarWarsCharacter';
 
 export const router = createBrowserRouter([
   {

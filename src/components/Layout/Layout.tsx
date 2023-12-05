@@ -49,9 +49,6 @@ export const Layout = () => {
       <div className={styles.dropdownWrapper}>
         <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
       </div>
-      <div className={styles.dropdownContainer}>
-        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
-      </div>
     </div>
   );
 };
