@@ -1,70 +1,99 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import uniqBy from 'lodash/uniqBy';
 
 import { Table } from '../../components/Table/Table';
-import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
+import { ViewContext } from '../../Providers/ViewProvider';
 import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
-import Dropdown from '../../components/Dropdown/Dropdown';
-import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import styles from './RickAndMorty.module.scss';
-import { Button } from '../../components/Button/Button';
+import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
+import InfiniteLoader from '../../components/InfiniteLoader/InfiniteLoader';
+import usePagination from '../../hooks/usePagination';
+
+type RickAndMortyResponseMetaType = {
+  count: number;
+  next: string | null;
+  pages: number | null;
+  prev: unknown | null | string;
+};
+
+type RickAndMortyResponseType = {
+  meta: RickAndMortyResponseMetaType;
+  results: RickAndMortyType[];
+};
+
+const rickAndMortyInitialData = {
+  meta: {
+    count: 0,
+    next: null,
+    pages: null,
+    prev: null
+  },
+  results: []
+};
 
 export const RickAndMorty = () => {
-  const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyType[]>([]);
+  const { view } = useContext(ViewContext);
+
+  const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyResponseType>(rickAndMortyInitialData);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const [count, setCount] = useState(1);
+  const { meta, results } = rickAndMortyData;
+  const hasNextPage = !!meta.next;
 
-  const handleNextPage = () => {
-    setCount(count + 1);
-  };
-
-  const handlePreviousPage = () => {
-    setCount(count - 1);
-  };
-
-  const { view, setView } = useContext(ViewContext);
-
-  const viewsOptions = views.map(({ key, title }) => ({
-    id: key,
-    label: title
-  }));
+  const [params, setPage] = usePagination(
+      (page) => ({
+        // TODO: query for search - you should extend it when you will add search
+        page: String(page)
+      }),
+      []
+  );
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://rickandmortyapi.com/api/character/?page=${count}`)
-      .then((response) => {
-        const listCharacters = response?.data?.results || [];
-        setRickAndMortyData(listCharacters);
-      })
-      .catch((apiError: unknown) => {
-        if (apiError instanceof Error) {
-          setError(apiError);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [count]);
+        .get(`https://rickandmortyapi.com/api/character/?page=${params.page}`)
+        .then((response) => {
+          const { info: nextMeta, results: nextResults } = response?.data;
+          setRickAndMortyData((prevRickAndMortyData) => ({
+            meta: nextMeta,
+            results: uniqBy([...prevRickAndMortyData.results, ...nextResults], 'id')
+          }));
+        })
+        .catch((apiError: unknown) => {
+          if (apiError instanceof Error) {
+            setError(apiError);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+  }, [params]);
+
+  // TODO: need to implement some button for refresh
+  const onRefresh = () => setPage(1);
+
+  const onEndReached = () => {
+    if (hasNextPage) {
+      setPage(Number(params.page) + 1);
+    }
+  };
 
   return (
-    <>
-      <div className={styles.dropdownContainer}>
-        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
-      </div>
-      <Button disabled={count < 2} title="Previous" handleClick={handlePreviousPage} />
-      <Button disabled={count > 41} title="Next" handleClick={handleNextPage} />
+      <>
+        {view === 'card' ? (
+            <RickAndMortyCards title="Rick and Morty" data={results} />
+        ) : (
+            <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />
+        )}
 
-      {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={rickAndMortyData} />}
-      {view === PageViews.table && <Table title="Rick and Morty" data={rickAndMortyData} tableConfig={headerRickAndMortyRowConfig} />}
+        <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 
-      <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
+        {loading && <div>Loading...</div>}
 
-      {loading && <div>Loading...</div>}
-    </>
+        {!loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
+      </>
   );
 };

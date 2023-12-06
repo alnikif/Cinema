@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import styles from './Table.module.scss';
 import { HeaderRow } from './HeaderRow/HeaderRow';
 import { BodyRows, BodyRowType } from './BodyRows/BodyRows';
 import { CellType } from './CellType';
+import styles from './Table.module.scss';
 
 type DataItemType = {
   id: string | number;
