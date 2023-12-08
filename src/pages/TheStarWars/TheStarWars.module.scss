@@ -1,10 +1,6 @@
-.dropdownContainer{
+.dropdownViewWrapper{
   position: absolute;
-  display: flex;
-  top: 60px;
   div{
-    margin: 0 auto;
-    color: black;
-    background-color: white;
+    background-color: inherit;
   }
 }

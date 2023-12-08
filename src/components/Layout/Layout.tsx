@@ -34,19 +34,12 @@ export const Layout = () => {
 
   const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
 
-  const { view, setView } = useContext(ViewContext);
-
-  const viewsOptions = views.map(({ key, title }) => ({
-    id: key,
-    label: title
-  }));
-
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.headerWrapper}>
         <Header navItemsConfig={navItemsConfig} />
       </div>
-      <div className={styles.dropdownWrapper}>
+      <div className={styles.dropdownThemeWrapper}>
         <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
       </div>
     </div>

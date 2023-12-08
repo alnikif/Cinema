@@ -6,12 +6,11 @@ import { Table } from '../../components/Table/Table';
 import { headerStarWarsRowConfig } from './starWarsTableConfig';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import styles from '../RickAndMorty/RickAndMorty.module.scss';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import styles from './TheStarWars.module.scss';
 
 export const TheStarWars = () => {
   const [starWarsData, setStarWarsData] = useState<StarWarsType[]>([]);
-
   const { view, setView } = useContext(ViewContext);
 
   const viewsOptions = views.map(({ key, title }) => ({
@@ -37,10 +36,9 @@ export const TheStarWars = () => {
 
   return (
     <div>
-      <div className={styles.dropdownContainer}>
+      <div className={styles.dropdownViewWrapper}>
         <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
-
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
       {view === PageViews.table && <Table title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}
     </div>
