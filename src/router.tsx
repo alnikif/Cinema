@@ -3,11 +3,12 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import { HomePage } from './pages/HomePage/HomePage';
-import { Pokemons } from './pages/Pokemons/Pokemons';
+import { HarryPotter } from './pages/HarryPotter/HarryPotter';
 import { RickAndMorty } from './pages/RickAndMorty/RickAndMorty';
 import { TheStarWars } from './pages/TheStarWars/TheStarWars';
-import { RickAndMortyCharacter } from './pages/RickAndMortyCharacter/RickAndMortyCharacter';
-import { TheStarWarsCharacter } from './pages/TheStarWarsCharacter/TheStarWarsCharacter';
+import { RickAndMortyCharacterPage } from './pages/RickAndMortyCharacterPage/RickAndMortyCharacterPage';
+import { TheStarWarsCharacterPage } from './pages/TheStarWarsCharacterPage/TheStarWarsCharacterPage';
+import { HarryPotterCharacterPage } from './pages/HarryPotterCharacterPage/HarryPotterCharacterPage';
 
 export const router = createBrowserRouter([
   {
@@ -18,8 +19,8 @@ export const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: '/pokemons',
-        element: <Pokemons />
+        path: '/harry-potter',
+        element: <HarryPotter />
       },
       {
         path: '/rick-and-morty',
@@ -31,11 +32,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/star-wars/:characterId',
-        element: <TheStarWarsCharacter />
+        element: <TheStarWarsCharacterPage />
       },
       {
         path: '/rick-and-morty/:characterId',
-        element: <RickAndMortyCharacter />
+        element: <RickAndMortyCharacterPage />
+      },
+      {
+        path: '/harry-potter/:characterId',
+        element: <HarryPotterCharacterPage />
       }
     ]
   }

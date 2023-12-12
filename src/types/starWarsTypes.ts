@@ -18,5 +18,6 @@ export type StarWarsType = {
   masters: string[];
   skinColor: string;
   species: string;
-  wiki:string;
+  wiki: string;
+  model: string;
 };

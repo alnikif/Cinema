@@ -21,7 +21,7 @@ const defaultViewContext = {
   view: DEFAULT_VIEW,
   setView: () => {
     //
-  },
+  }
 };
 
 export const ViewContext = createContext<ViewContextType>(defaultViewContext);
@@ -35,16 +35,13 @@ export const ViewProvider: FC<ProvidersType> = (props) => {
 
   const [view, setView] = useState<PageViews>(defaultViewContext.view);
 
+  const viewContextValue = useMemo(
+    () => ({
+      view,
+      setView
+    }),
+    [view]
+  );
 
-  const viewContextValue = useMemo(() => ({
-    view,
-    setView
-  }), [view]);
-
-
-  return(
-    <ViewContext.Provider value={viewContextValue}>
-      {children}
-    </ViewContext.Provider>
-  )
+  return <ViewContext.Provider value={viewContextValue}>{children}</ViewContext.Provider>;
 };

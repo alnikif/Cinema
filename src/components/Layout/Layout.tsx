@@ -9,7 +9,7 @@ import { ViewContext, views } from '../../Providers/ViewProvider';
 
 export enum NavItems {
   homePage = 'Home Page',
-  pokemons = 'Pokemons',
+  harryPotter = 'Harry Potter',
   rickAndMorty = 'Rick and Morty',
   theStarWars = 'The Star Wars'
 }
@@ -21,7 +21,7 @@ export type NavItemType = {
 
 export const navItemsConfig = [
   { label: NavItems.homePage, url: '/' },
-  { label: NavItems.pokemons, url: '/pokemons' },
+  { label: NavItems.harryPotter, url: '/harry-potter' },
   { label: NavItems.rickAndMorty, url: '/rick-and-morty' },
   { label: NavItems.theStarWars, url: '/star-wars' }
 ];

@@ -15,7 +15,8 @@ import { HomeWorldCell } from '../Cells/HomeWorldCell';
 import { ApprenticesCell } from '../Cells/ApprenticesCell';
 import { CyberneticsCell } from '../Cells/CyberneticsCell';
 import { MastersCell } from '../Cells/MastersCell';
-
+import { CharacterTypeCell } from '../Cells/CharacterTypeCell';
+import { HouseCell } from '../Cells/HouseCell';
 
 export type BodyCellType = {
   key: string;
@@ -42,7 +43,7 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
         const cellContent = () => {
           switch (bodyCell.cellType) {
             case CellType.link:
-              return <LinkCell link={bodyCell.value as string} />;
+              return <LinkCell title="Show Character" link={bodyCell.value as string} />;
             case CellType.name:
               return <NameCell name={bodyCell.value as string} />;
             case CellType.gender:
@@ -61,14 +62,16 @@ export const BodyRows: React.FC<BodyRowCellType> = (props) => {
               return <ClassCell class={bodyCell.value as string} />;
             case CellType.homeworld:
               return <HomeWorldCell homeworld={bodyCell.value as string} />;
-            case CellType.apprentices:
-              return <ApprenticesCell apprentices={bodyCell.value as string[] | undefined} />;
-            case CellType.cybernetics:
-              return <CyberneticsCell cybernetics={bodyCell.value as string} />;
-            case CellType.masters:
-              return <MastersCell masters={bodyCell.value as string[] | undefined} />;
             case CellType.wiki:
-              return <LinkCell title='link to wiki' link={bodyCell.value as string} />;
+              return <LinkCell title="link to wiki" link={bodyCell.value as string} />;
+            case CellType.wizard:
+              return <CharacterTypeCell wizard={bodyCell.value as boolean} />;
+            case CellType.house:
+              return <HouseCell house={bodyCell.value as string} />;
+            case CellType.alive:
+              return <StatusCell status={bodyCell.value ? 'alive' : ('died' as string)} />;
+            case CellType.ancestry:
+              return <NameCell name={bodyCell.value as string} />;
             default:
               null;
           }

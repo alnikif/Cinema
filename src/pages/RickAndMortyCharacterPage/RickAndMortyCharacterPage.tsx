@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import { useParams } from 'react-router-dom';
-import { StarWarsType } from '../../types/starWarsTypes';
-import { StarWarsCard } from '../../components/Cards/StarWarsCards/Card/StarWarsCard';
-import styles from './StarWarsCharacter.module.scss';
 
-export const TheStarWarsCharacter = () => {
-  const [starWarsCharacter, setStarWarsCharacter] = useState<StarWarsType | null>(null);
+import { RickAndMortyCard } from '../../components/Cards/RickAndMortyCards/Card/RickAndMortyCard';
+import { RickAndMortyType } from '../../types/rickAndMortyTypes';
+import styles from './RickAndMortyCharacterPage.module.scss';
+
+export const RickAndMortyCharacterPage = () => {
+  const [rickAndMortyCharacter, setRickAndMortyCharacter] = useState<RickAndMortyType | null>(null);
   const { characterId } = useParams();
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
@@ -15,11 +15,10 @@ export const TheStarWarsCharacter = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${characterId}.json`)
+      .get(`https://rickandmortyapi.com/api/character/${characterId}`)
       .then((response) => {
         const { data } = response;
-        console.log(response);
-        setStarWarsCharacter(data);
+        setRickAndMortyCharacter(data);
       })
       .catch((apiError: unknown) => {
         if (apiError instanceof Error) {
@@ -29,19 +28,19 @@ export const TheStarWarsCharacter = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [characterId]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!starWarsCharacter) {
+  if (!rickAndMortyCharacter) {
     return <div>No data</div>;
   }
 
   return (
     <div className={styles.characterWrapper}>
-      <StarWarsCard characterData={starWarsCharacter} />
+      <RickAndMortyCard characterData={rickAndMortyCharacter} />
     </div>
   );
 };

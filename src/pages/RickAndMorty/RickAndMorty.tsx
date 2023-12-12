@@ -93,11 +93,8 @@ export const RickAndMorty = () => {
       <div className={styles.dropdownViewWrapper}>
         <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
-      {view === PageViews.card ? (
-        <RickAndMortyCards title="Rick and Morty" data={results} />
-      ) : (
-        <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />
-      )}
+      {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
+      {view === PageViews.table && <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
 
       <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 

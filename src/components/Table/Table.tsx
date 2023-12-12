@@ -13,7 +13,7 @@ type TableConfigType<T> = {
   dataKey: string;
   label: string;
   cellType: CellType;
-  width: number;
+  width?: number;
   getCellValue?: (itemData: T) => string;
 };
 
