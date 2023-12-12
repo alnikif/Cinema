@@ -11,19 +11,19 @@
     height: 300px;
     width: auto;
   }
-}
-.CharacterInfo{
-  margin-top: 5px;
-  display: flex;
-  justify-content: center;
-  div{
-    background-color: #61dafb;
-    color: white;
-    padding: 4px;
-    border-radius: 5px;
-    margin: 5px;
+  .link{
+    text-decoration: none;
   }
-}
-.CharacterLocation{
-  padding: 5px;
+  .CharacterInfo{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    div{
+      background-color: #61dafb;
+      color: white;
+      padding: 4px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+  }
 }

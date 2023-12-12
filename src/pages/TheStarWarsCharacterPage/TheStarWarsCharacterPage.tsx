@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { useParams } from 'react-router-dom';
-import { StarWarsType } from '../../../types/starWarsTypes';
-import { StarWarsCard } from '../../../components/Cards/StarWarsCards/Card/StarWarsCard';
-import styles from './StarWarsCharacter.module.scss'
+import { StarWarsType } from '../../types/starWarsTypes';
+import { TheStarWarsCharacter } from './TheStarWarsCharacter/TheStarWarsCharacter';
 
-export const TheStarWarsCharacter = () => {
+export const TheStarWarsCharacterPage = () => {
   const [starWarsCharacter, setStarWarsCharacter] = useState<StarWarsType | null>(null);
   const { characterId } = useParams();
   const [error, setError] = useState<Error | null>(null);
@@ -18,7 +17,7 @@ export const TheStarWarsCharacter = () => {
       .get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${characterId}.json`)
       .then((response) => {
         const { data } = response;
-        console.log(response)
+        console.log(response);
         setStarWarsCharacter(data);
       })
       .catch((apiError: unknown) => {
@@ -29,7 +28,9 @@ export const TheStarWarsCharacter = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [characterId]);
+
+  console.log(starWarsCharacter);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -40,8 +41,8 @@ export const TheStarWarsCharacter = () => {
   }
 
   return (
-    <div className={styles.characterWrapper}>
-      <StarWarsCard characterData={starWarsCharacter} />
+    <div>
+      <TheStarWarsCharacter characterData={starWarsCharacter} />
     </div>
   );
 };

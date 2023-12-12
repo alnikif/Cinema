@@ -1,0 +1,28 @@
+.CharacterCard{
+  width: 250px;
+  margin: 0 auto;
+  border: 2px solid #000;
+  text-align: center;
+  padding-bottom: 7px;
+  background-color: white;
+  box-shadow: 10px 10px 5px black;
+  img{
+    height: 130px;
+    width: auto;
+  }
+  .link{
+    text-decoration: none;
+  }
+}
+.CharacterInfo{
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  div{
+    background-color: #61dafb;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 5px;
+  }
+}

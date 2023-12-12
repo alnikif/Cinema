@@ -9,7 +9,7 @@ import { ViewContext, views } from '../../Providers/ViewProvider';
 
 export enum NavItems {
   homePage = 'Home Page',
-  pokemons = 'Pokemons',
+  harryPotter = 'Harry Potter',
   rickAndMorty = 'Rick and Morty',
   theStarWars = 'The Star Wars'
 }
@@ -21,7 +21,7 @@ export type NavItemType = {
 
 export const navItemsConfig = [
   { label: NavItems.homePage, url: '/' },
-  { label: NavItems.pokemons, url: '/pokemons' },
+  { label: NavItems.harryPotter, url: '/harry-potter' },
   { label: NavItems.rickAndMorty, url: '/rick-and-morty' },
   { label: NavItems.theStarWars, url: '/star-wars' }
 ];
@@ -34,23 +34,13 @@ export const Layout = () => {
 
   const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
 
-  const { view, setView } = useContext(ViewContext);
-
-  const viewsOptions = views.map(({ key, title }) => ({
-    id: key,
-    label: title
-  }));
-
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.headerWrapper}>
         <Header navItemsConfig={navItemsConfig} />
       </div>
-      <div className={styles.dropdownWrapper}>
+      <div className={styles.dropdownThemeWrapper}>
         <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
-      </div>
-      <div className={styles.dropdownContainer}>
-        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
     </div>
   );

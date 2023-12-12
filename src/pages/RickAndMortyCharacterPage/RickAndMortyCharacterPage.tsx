@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { RickAndMortyCard } from '../../../components/Cards/RickAndMortyCards/Card/RickAndMortyCard';
-import { RickAndMortyType } from '../../../types/rickAndMortyTypes';
-import styles from './RickAndMortyCharacter.module.scss';
 
+import { RickAndMortyCard } from '../../components/Cards/RickAndMortyCards/Card/RickAndMortyCard';
+import { RickAndMortyType } from '../../types/rickAndMortyTypes';
+import styles from './RickAndMortyCharacterPage.module.scss';
 
-export const RickAndMortyCharacter = () => {
+export const RickAndMortyCharacterPage = () => {
   const [rickAndMortyCharacter, setRickAndMortyCharacter] = useState<RickAndMortyType | null>(null);
   const { characterId } = useParams();
   const [error, setError] = useState<Error | null>(null);
@@ -28,7 +28,7 @@ export const RickAndMortyCharacter = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [characterId]);
 
   if (loading) {
     return <div>Loading...</div>;

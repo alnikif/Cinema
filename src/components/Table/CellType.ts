@@ -21,5 +21,11 @@ export enum CellType {
   masters = 'masters',
   skinColor = 'skinColor',
   wiki = 'wiki',
-  class = 'class'
+  class = 'class',
+  alive = 'alive',
+  alternateNames = 'alternateNames',
+  ancestry = 'ancestry',
+  dateOfBirth = 'dateOfBirth',
+  house = 'house',
+  wizard = 'wizard'
 }

@@ -1,29 +1,73 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import uniqBy from 'lodash/uniqBy';
 
 import { Table } from '../../components/Table/Table';
-import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
+import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
 import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
+import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
+import InfiniteLoader from '../../components/InfiniteLoader/InfiniteLoader';
+import usePagination from '../../hooks/usePagination';
 import Dropdown from '../../components/Dropdown/Dropdown';
-import styles from './RickAndMorty.module.scss'
-import { ViewContext, views } from '../../Providers/ViewProvider';
-import { ThemeContext } from '../../Providers/ThemeProvider';
+import styles from './RickAndMorty.module.scss';
+
+type RickAndMortyResponseMetaType = {
+  count: number;
+  next: string | null;
+  pages: number | null;
+  prev: unknown | null | string;
+};
+
+type RickAndMortyResponseType = {
+  meta: RickAndMortyResponseMetaType;
+  results: RickAndMortyType[];
+};
+
+const rickAndMortyInitialData = {
+  meta: {
+    count: 0,
+    next: null,
+    pages: null,
+    prev: null
+  },
+  results: []
+};
 
 export const RickAndMorty = () => {
-  const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyType[]>([]);
+  const [rickAndMortyData, setRickAndMortyData] = useState<RickAndMortyResponseType>(rickAndMortyInitialData);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const { meta, results } = rickAndMortyData;
+  const hasNextPage = !!meta.next;
+
+  const { view, setView } = useContext(ViewContext);
+
+  const viewsOptions = views.map(({ key, title }) => ({
+    id: key,
+    label: title
+  }));
+
+  const [params, setPage] = usePagination(
+    (page) => ({
+      // TODO: query for search - you should extend it when you will add search
+      page: String(page)
+    }),
+    []
+  );
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://rickandmortyapi.com/api/character`)
+      .get(`https://rickandmortyapi.com/api/character/?page=${params.page}`)
       .then((response) => {
-        const listCharacters = response?.data?.results || [];
-        setRickAndMortyData(listCharacters);
+        const { info: nextMeta, results: nextResults } = response?.data;
+        setRickAndMortyData((prevRickAndMortyData) => ({
+          meta: nextMeta,
+          results: uniqBy([...prevRickAndMortyData.results, ...nextResults], 'id')
+        }));
       })
       .catch((apiError: unknown) => {
         if (apiError instanceof Error) {
@@ -33,22 +77,30 @@ export const RickAndMorty = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [params]);
 
-  const {view} = useContext(ViewContext)
+  // TODO: need to implement some button for refresh
+  const onRefresh = () => setPage(1);
+
+  const onEndReached = () => {
+    if (hasNextPage) {
+      setPage(Number(params.page) + 1);
+    }
+  };
 
   return (
     <>
-
-
-      {view === 'card' ?
-        <RickAndMortyCards title="Rick and Morty" data={rickAndMortyData} /> :
-        <Table title="Rick and Morty" data={rickAndMortyData} tableConfig={headerRickAndMortyRowConfig} />
-      }
+      <div className={styles.dropdownViewWrapper}>
+        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+      </div>
+      {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
+      {view === PageViews.table && <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
 
       <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 
       {loading && <div>Loading...</div>}
+
+      {!loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
     </>
   );
 };
