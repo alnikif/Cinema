@@ -1,0 +1,12 @@
+@import '../../constants/themeTokens.module.scss';
+
+.layoutWrapper{
+  display: flex;
+  justify-content: space-between;
+  background-color: $header-background;
+  height: 40px;
+  padding: 5px;
+  div{
+    color: $header-color;
+  }
+}

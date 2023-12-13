@@ -1,9 +1,9 @@
 import React from 'react';
 
 type GenderCellProps = {
-  readonly gender: string | number;
+    readonly gender: string;
 };
 
 export const GenderCell: React.FC<GenderCellProps> = ({ gender }) => {
-  return <div>{gender}</div>;
+    return <div>{gender}</div>;
 };
