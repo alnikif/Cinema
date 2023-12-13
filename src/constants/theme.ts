@@ -14,17 +14,17 @@ export const DEFAULT_THEME = Themes.light;
 export const themesTokensConstants = {
   [Themes.light]: {
     // header
-    '--header-background': '#6370f0',
-    '--dropdown-background': '#6370f0',
-    '--header-color': '#ffe4c4',
+    '--header-background': '#EBECF0',
+    '--dropdown-background': '#EBECF0',
+    '--header-color': '#000',
 
     // checkbox & slider
     '--checkbox-background': '#6370f0',
-    '--checkbox-color': '#6370f0',
+    '--checkbox-color': '#000',
 
     //table
-    '--table-row-background': '#fff',
-    '--table-row-color': '#808080',
+    '--table-row-background': '#EBECF0',
+    '--table-row-color': '#000',
     '--table-row-border': '1px solid #000',
 
     //card
@@ -32,8 +32,8 @@ export const themesTokensConstants = {
   },
   [Themes.dark]: {
     // header
-    '--header-background': '#710C04',
-    '--dropdown-background': '#710C04',
+    '--header-background': '#808080',
+    '--dropdown-background': '#808080',
     '--header-color': '#fff',
 
     // checkbox & slider
@@ -41,8 +41,8 @@ export const themesTokensConstants = {
     '--checkbox-color': '#000000',
 
     //table
-    '--table-row-background': '#fffeee',
-    '--table-row-color': '#000',
+    '--table-row-background': '#BEBEBE',
+    '--table-row-color': '#fff',
     '--table-row-border': '1px solid #000',
 
     //card
