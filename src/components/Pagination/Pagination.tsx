@@ -3,11 +3,12 @@ import React, { FC } from 'react';
 export type PaginationPropsType = {
     readonly pagesLength: number;
     readonly currentPage: number;
+    readonly loading: boolean;
     readonly onSelectPage: (nextPage: number) => void;
 };
 
 export const Pagination: FC<PaginationPropsType> = (props) => {
-    const { pagesLength, currentPage, onSelectPage } = props;
+    const { loading, pagesLength, currentPage, onSelectPage } = props;
     const lastPage = pagesLength;
 
     const pages = Array
@@ -20,7 +21,7 @@ export const Pagination: FC<PaginationPropsType> = (props) => {
         <div style={{ display: 'flex' }}>
             <button
                 type="button"
-                disabled={currentPage === 1}
+                disabled={ loading || currentPage === 1}
                 onClick={() => onSelectPage(1)}
             >
                 1
@@ -28,6 +29,7 @@ export const Pagination: FC<PaginationPropsType> = (props) => {
             {pages.map((pageNumber, i) => (
                 <button
                     type="button"
+                    disabled={loading}
                     key={String(pageNumber)}
                     onClick={() => onSelectPage(Number(pageNumber))}
                 >
@@ -36,7 +38,7 @@ export const Pagination: FC<PaginationPropsType> = (props) => {
             ))}
             <button
                 type="button"
-                disabled={currentPage === lastPage}
+                disabled={ loading || currentPage === lastPage}
                 onClick={() => onSelectPage(lastPage)}
             >
                 {lastPage}

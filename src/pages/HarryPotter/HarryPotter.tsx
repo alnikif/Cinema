@@ -3,10 +3,10 @@ import axios from 'axios';
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryPotterCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import styles from '../RickAndMorty/RickAndMorty.module.scss';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { harryPotterTableConfig } from './harryPotterTableConfig';
 import { Table } from '../../components/Table/Table';
+import styles from './HarryPotter.module.scss';
 
 export const HarryPotter = () => {
   const [harryPotterData, setHarryPotterData] = useState<HarryPotterType[] | []>([]);

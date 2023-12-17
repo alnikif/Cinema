@@ -133,7 +133,7 @@ export const RickAndMorty = () => {
                 />
             )}
 
-            <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
+            {/*<NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />*/}
 
             {loading && <div>Loading...</div>}
 
