@@ -1,6 +1,5 @@
 import React from 'react';
 import { NameCell } from '../Cells/NameCell';
-import { CellWrapper } from '../CellWrappers/CellWrapper/CelllWrapper';
 import { HeaderCellWrapper } from '../CellWrappers/HeaderCellWrapper/HeaderCellWrapper';
 
 export type HeaderCellType = {
