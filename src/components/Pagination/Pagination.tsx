@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import styles from './Pagination.module.scss'
+
 export type PaginationPropsType = {
     readonly pagesLength: number;
     readonly currentPage: number;
@@ -18,7 +20,7 @@ export const Pagination: FC<PaginationPropsType> = (props) => {
         ));
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div className={styles.paginationButtons}>
             <button
                 type="button"
                 disabled={ loading || currentPage === 1}
@@ -31,6 +33,7 @@ export const Pagination: FC<PaginationPropsType> = (props) => {
                     type="button"
                     disabled={loading}
                     key={String(pageNumber)}
+                    className={currentPage === pageNumber ? styles.active : ''}
                     onClick={() => onSelectPage(Number(pageNumber))}
                 >
                     {pageNumber}

@@ -1,0 +1,12 @@
+.paginationButtons{
+  display: flex;
+  justify-content: center;
+  .active{
+    background-color: seagreen;
+  }
+  button{
+    background-color: #fff;
+    border-radius: 50%;
+    width: 50px;
+  }
+}
