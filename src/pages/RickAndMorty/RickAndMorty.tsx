@@ -13,15 +13,8 @@ import usePagination from '../../hooks/usePagination';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { Pagination } from '../../components/Pagination/Pagination';
 import styles from './RickAndMorty.module.scss';
+import {PaginationContext, paginations, PaginationTypes} from "../../Providers/PaginationProvider";
 
-// TODO: move to PaginationProvider
-export enum PaginationType {
-    infinity = 'infinity',
-    manual = 'manual'
-}
-// TODO: move to PaginationProvider
-// eslint-disable-next-line prefer-const
-let paginationType: PaginationType = PaginationType.manual;
 
 type RickAndMortyResponseMetaType = {
     count: number;
@@ -53,7 +46,6 @@ export const RickAndMorty = () => {
 
     const { meta, results } = rickAndMortyData;
     const hasNextPage = !!meta.next;
-    const isInfinityPagination = paginationType === PaginationType.infinity;
 
     const { view, setView } = useContext(ViewContext);
 
@@ -62,9 +54,18 @@ export const RickAndMorty = () => {
         label: title
     }));
 
+    const { pagination, setPagination } = useContext(PaginationContext);
+
+    const paginationOptions = paginations.map(({ key, title }) => ({
+        id: key,
+        label: title
+    }));
+
+    const isInfinityPagination = pagination === PaginationTypes.infinity;
+
+
     const [params, setPage] = usePagination(
         (page) => ({
-            // TODO: query for search - you should extend it when you will add search
             page: String(page)
         }),
         []
@@ -101,7 +102,6 @@ export const RickAndMorty = () => {
             });
     }, [isInfinityPagination, params.page]);
 
-    // TODO: need to implement some button for refresh
     const onRefresh = () => setPage(1);
 
     const onEndReached = () => {
@@ -118,13 +118,14 @@ export const RickAndMorty = () => {
         <div ref={setPageRef}>
             <div className={styles.dropdownViewWrapper}>
                 <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+                <Dropdown selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
             {view === PageViews.table && <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
 
-            {paginationType === PaginationType.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
-            {paginationType === PaginationType.manual && (
+            {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
+            {pagination === PaginationTypes.manual && (
                 <Pagination
                     loading={loading}
                     pagesLength={meta.pages || 0}
@@ -133,11 +134,9 @@ export const RickAndMorty = () => {
                 />
             )}
 
-            {/*<NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />*/}
+            <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 
             {loading && <div>Loading...</div>}
-
-            {/* {!loading && <InfiniteLoader offset={150} onReached={onEndReached} />} */}
         </div>
     );
 };

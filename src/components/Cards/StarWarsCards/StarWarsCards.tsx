@@ -3,14 +3,13 @@ import { StarWarsCard } from './Card/StarWarsCard';
 import { StarWarsType } from '../../../types/starWarsTypes';
 // import { ListContainer } from '../../ListContainer/ListContainer';
 import { withListLayout } from '../../ListContainer/ListContainer';
-import styles from './StarWarsCards.module.scss';
 
 export type CardsPropsType = {
   readonly data: StarWarsType[];
   readonly title: string;
 };
 
-const StarWarsListLayout = ({ children }: { readonly children: ReactNode }) => <div className={styles.listContainer}>{children}</div>;
+const StarWarsListLayout = ({ children }: { readonly children: ReactNode }) => <div>{children}</div>;
 
 // HOC High Order Components
 // const StarWarsList = withListLayout(StarWarsListLayout);
