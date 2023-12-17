@@ -1,7 +1,12 @@
-.dropdownViewWrapper{
+.dropdownWrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   div{
     background-color: inherit;
+
+
   }
 }
 

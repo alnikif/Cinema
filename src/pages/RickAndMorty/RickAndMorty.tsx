@@ -116,9 +116,13 @@ export const RickAndMorty = () => {
 
     return (
         <div ref={setPageRef}>
-            <div className={styles.dropdownViewWrapper}>
-                <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
-                <Dropdown selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
+            <div className={styles.dropdownWrapper}>
+                <div>
+                    <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+                </div>
+                <div>
+                    <Dropdown selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
+                </div>
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
