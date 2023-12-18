@@ -1,0 +1,14 @@
+.CardsContainer{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  h2{
+    font-size: 40px;
+  }
+}
+.CardsWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 15px;
+}
