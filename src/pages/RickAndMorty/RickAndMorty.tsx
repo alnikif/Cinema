@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import uniqBy from 'lodash/uniqBy';
 
 import { Table } from '../../components/Table/Table';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import { RickAndMortyResponseMetaType, RickAndMortyType } from '../../types/rickAndMortyTypes';
+import { RickAndMortyListResponseMetaType, RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
@@ -17,7 +16,7 @@ import { PaginationContext, paginations, PaginationTypes } from '../../Providers
 import { getRickAndMortyList } from '../../api/rickAndMorty';
 
 type RickAndMortyResponseType = {
-    meta: RickAndMortyResponseMetaType;
+    meta: RickAndMortyListResponseMetaType;
     results: RickAndMortyType[];
 };
 

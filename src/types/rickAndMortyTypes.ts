@@ -20,16 +20,14 @@ export type RickAndMortyType = {
 /**
  * LIST
  */
-// TODO: rename to RickAndMortyListResponseMetaType
-export type RickAndMortyResponseMetaType = {
+export type RickAndMortyListResponseMetaType = {
   count: number;
   next: string | null;
   pages: number | null;
   prev: unknown | null | string;
 };
 
-// TODO: rename to RickAndMortyListResponseType
-export type RickAndMortyResponseType = {
-  info: RickAndMortyResponseMetaType;
+export type RickAndMortyListResponseType = {
+  info: RickAndMortyListResponseMetaType;
   results: RickAndMortyType[];
 };
