@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState, FC, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import uniqBy from 'lodash/uniqBy';
 
 import { Table } from '../../components/Table/Table';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import { RickAndMortyType } from '../../types/rickAndMortyTypes';
+import { RickAndMortyResponseMetaType, RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
@@ -13,15 +13,8 @@ import usePagination from '../../hooks/usePagination';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { Pagination } from '../../components/Pagination/Pagination';
 import styles from './RickAndMorty.module.scss';
-import {PaginationContext, paginations, PaginationTypes} from "../../Providers/PaginationProvider";
-
-
-type RickAndMortyResponseMetaType = {
-    count: number;
-    next: string | null;
-    pages: number | null;
-    prev: unknown | null | string;
-};
+import { PaginationContext, paginations, PaginationTypes } from '../../Providers/PaginationProvider';
+import { getRickAndMortyList } from '../../api/rickAndMorty';
 
 type RickAndMortyResponseType = {
     meta: RickAndMortyResponseMetaType;
@@ -63,7 +56,6 @@ export const RickAndMorty = () => {
 
     const isInfinityPagination = pagination === PaginationTypes.infinity;
 
-
     const [params, setPage] = usePagination(
         (page) => ({
             page: String(page)
@@ -72,16 +64,12 @@ export const RickAndMorty = () => {
     );
 
     useEffect(() => {
-
         setLoading(true);
-        axios
-            .get(`https://rickandmortyapi.com/api/character/?page=${params.page}`)
-            .then((response) => {
-                const { info: nextMeta, results: responseResults } = response?.data;
+
+        getRickAndMortyList(params.page)
+            .then(({ info: nextMeta, results: responseResults }) => {
                 setRickAndMortyData((prevRickAndMortyData) => {
-                    const nextResults = isInfinityPagination
-                        ? uniqBy([...prevRickAndMortyData.results, ...responseResults], 'id')
-                        : responseResults;
+                    const nextResults = isInfinityPagination ? uniqBy([...prevRickAndMortyData.results, ...responseResults], 'id') : responseResults;
                     return { meta: nextMeta, results: nextResults };
                 });
             })
@@ -94,9 +82,9 @@ export const RickAndMorty = () => {
                 setLoading(false);
                 if (!isInfinityPagination) {
                     pageRef?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "nearest",
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
                     });
                 }
             });
@@ -112,7 +100,7 @@ export const RickAndMorty = () => {
 
     const onSelectPage = (nextPage: number) => {
         if (!loading) setPage(nextPage);
-    }
+    };
 
     return (
         <div ref={setPageRef}>
@@ -130,12 +118,7 @@ export const RickAndMorty = () => {
 
             {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
             {pagination === PaginationTypes.manual && (
-                <Pagination
-                    loading={loading}
-                    pagesLength={meta.pages || 0}
-                    currentPage={Number(params.page)}
-                    onSelectPage={onSelectPage}
-                />
+                <Pagination loading={loading} pagesLength={meta.pages || 0} currentPage={Number(params.page)} onSelectPage={onSelectPage} />
             )}
 
             <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />

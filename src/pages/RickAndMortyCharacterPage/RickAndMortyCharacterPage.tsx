@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import { RickAndMortyCard } from '../../components/Cards/RickAndMortyCards/Card/RickAndMortyCard';
 import { RickAndMortyType } from '../../types/rickAndMortyTypes';
 import styles from './RickAndMortyCharacterPage.module.scss';
+import { getRickAndMortyCharacter } from '../../api/rickAndMorty';
 
 export const RickAndMortyCharacterPage = () => {
   const [rickAndMortyCharacter, setRickAndMortyCharacter] = useState<RickAndMortyType | null>(null);
@@ -13,21 +13,20 @@ export const RickAndMortyCharacterPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!characterId) return;
+
     setLoading(true);
-    axios
-      .get(`https://rickandmortyapi.com/api/character/${characterId}`)
-      .then((response) => {
-        const { data } = response;
-        setRickAndMortyCharacter(data);
-      })
-      .catch((apiError: unknown) => {
-        if (apiError instanceof Error) {
-          setError(apiError);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+    getRickAndMortyCharacter(characterId)
+        .then(setRickAndMortyCharacter)
+        .catch((apiError: unknown) => {
+          if (apiError instanceof Error) {
+            setError(apiError);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
   }, [characterId]);
 
   if (loading) {
@@ -39,8 +38,8 @@ export const RickAndMortyCharacterPage = () => {
   }
 
   return (
-    <div className={styles.characterWrapper}>
-      <RickAndMortyCard characterData={rickAndMortyCharacter} />
-    </div>
+      <div className={styles.characterWrapper}>
+        <RickAndMortyCard characterData={rickAndMortyCharacter} />
+      </div>
   );
 };

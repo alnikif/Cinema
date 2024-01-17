@@ -48,7 +48,5 @@ export const HarryPotter = () => {
       {loading && <div>Loading...</div>}
 
     </>
-
-
 );
 };
