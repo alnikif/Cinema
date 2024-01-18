@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCharacter } from './HarryPotterCharacter/HarryPotterCharacter';
+import {getHarryPotterCharacter} from "../../api/harryPotter";
 
 export const HarryPotterCharacterPage = () => {
   const [harryPotterCharacter, setHarryPotterCharacter] = useState<HarryPotterType[] | null>(null);
@@ -12,10 +13,11 @@ export const HarryPotterCharacterPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if(!characterId) return;
     axios
-      .get(`https://hp-api.onrender.com/api/character/${characterId}`)
+    getHarryPotterCharacter(characterId)
       .then((response) => {
-        setHarryPotterCharacter(response.data);
+        setHarryPotterCharacter(response);
       })
       .catch((apiError: unknown) => {
         if (apiError instanceof Error) {

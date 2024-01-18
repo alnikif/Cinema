@@ -8,6 +8,7 @@ import { harryPotterTableConfig } from './harryPotterTableConfig';
 import { Table } from '../../components/Table/Table';
 import styles from './HarryPotter.module.scss';
 import {NotificationError} from "../../components/NotificationError/NotificationError";
+import {getHarryPotterList} from "../../api/harryPotter";
 
 export const HarryPotter = () => {
   const [harryPotterData, setHarryPotterData] = useState<HarryPotterType[] | []>([]);
@@ -22,9 +23,8 @@ export const HarryPotter = () => {
   }));
 
   useEffect(() => {
-    axios.get('https://hp-api.onrender.com/api/characters').then((response) => {
-      setHarryPotterData(response.data);
-      console.log(harryPotterData);
+    getHarryPotterList().then((response) => {
+      setHarryPotterData(response);
     })
     .catch((apiError: unknown) => {
       if (apiError instanceof Error) {
