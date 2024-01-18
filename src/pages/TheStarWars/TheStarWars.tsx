@@ -20,7 +20,6 @@ export const TheStarWars = () => {
   }));
 
   useEffect(() => {
-    axios
     getStarWarsList('all')
       .then((response) => {
         setStarWarsData(response);

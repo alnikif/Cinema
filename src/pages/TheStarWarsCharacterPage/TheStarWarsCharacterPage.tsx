@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { StarWarsType } from '../../types/starWarsTypes';
 import { TheStarWarsCharacter } from './TheStarWarsCharacter/TheStarWarsCharacter';
+import {getStarWarsCharacter} from "../../api/theStarWars";
 
 export const TheStarWarsCharacterPage = () => {
   const [starWarsCharacter, setStarWarsCharacter] = useState<StarWarsType | null>(null);
@@ -12,13 +13,11 @@ export const TheStarWarsCharacterPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if(!characterId) return;
     setLoading(true);
-    axios
-      .get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${characterId}.json`)
+    getStarWarsCharacter(characterId)
       .then((response) => {
-        const { data } = response;
-        console.log(response);
-        setStarWarsCharacter(data);
+        setStarWarsCharacter(response);
       })
       .catch((apiError: unknown) => {
         if (apiError instanceof Error) {

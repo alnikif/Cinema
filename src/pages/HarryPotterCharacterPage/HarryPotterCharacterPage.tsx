@@ -14,7 +14,6 @@ export const HarryPotterCharacterPage = () => {
 
   useEffect(() => {
     if(!characterId) return;
-    axios
     getHarryPotterCharacter(characterId)
       .then((response) => {
         setHarryPotterCharacter(response);
