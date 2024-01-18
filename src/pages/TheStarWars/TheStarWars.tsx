@@ -8,6 +8,7 @@ import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCard
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import styles from './TheStarWars.module.scss';
+import {getStarWarsList} from "../../api/theStarWars";
 
 export const TheStarWars = () => {
   const [starWarsData, setStarWarsData] = useState<StarWarsType[]>([]);
@@ -20,10 +21,9 @@ export const TheStarWars = () => {
 
   useEffect(() => {
     axios
-      .get('https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/all.json')
+    getStarWarsList('all')
       .then((response) => {
-        const listCharacters = response?.data || [];
-        setStarWarsData(listCharacters);
+        setStarWarsData(response);
       })
       .catch((apiError: unknown) => {
         if (apiError instanceof Error) {
