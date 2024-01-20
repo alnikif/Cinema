@@ -5,13 +5,13 @@ import Dropdown from '../Dropdown/Dropdown';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
 import styles from './Layout.module.scss';
-import { ViewContext, views } from '../../Providers/ViewProvider';
 
 export enum NavItems {
   homePage = 'Home Page',
   harryPotter = 'Harry Potter',
   rickAndMorty = 'Rick and Morty',
-  theStarWars = 'The Star Wars'
+  theStarWars = 'The Star Wars',
+  formPlayground = 'Form Playground'
 }
 
 export type NavItemType = {
@@ -23,7 +23,8 @@ export const navItemsConfig = [
   { label: NavItems.homePage, url: '/' },
   { label: NavItems.harryPotter, url: '/harry-potter' },
   { label: NavItems.rickAndMorty, url: '/rick-and-morty' },
-  { label: NavItems.theStarWars, url: '/star-wars' }
+  { label: NavItems.theStarWars, url: '/star-wars' },
+  { label: NavItems.formPlayground, url: '/form-playground' }
 ];
 
 export const Layout = () => {
@@ -35,13 +36,13 @@ export const Layout = () => {
   const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
 
   return (
-    <div className={styles.layoutWrapper}>
-      <div className={styles.headerWrapper}>
-        <Header navItemsConfig={navItemsConfig} />
+      <div className={styles.layoutWrapper}>
+        <div className={styles.headerWrapper}>
+          <Header navItemsConfig={navItemsConfig} />
+        </div>
+        <div className={styles.dropdownThemeWrapper}>
+          <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
+        </div>
       </div>
-      <div className={styles.dropdownThemeWrapper}>
-        <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
-      </div>
-    </div>
   );
 };

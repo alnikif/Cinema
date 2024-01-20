@@ -9,6 +9,7 @@ import { TheStarWars } from './pages/TheStarWars/TheStarWars';
 import { RickAndMortyCharacterPage } from './pages/RickAndMortyCharacterPage/RickAndMortyCharacterPage';
 import { TheStarWarsCharacterPage } from './pages/TheStarWarsCharacterPage/TheStarWarsCharacterPage';
 import { HarryPotterCharacterPage } from './pages/HarryPotterCharacterPage/HarryPotterCharacterPage';
+import FormPlayground from './pages/FormPlayground/FormPlayground';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: '/harry-potter/:characterId',
         element: <HarryPotterCharacterPage />
+      },
+      {
+        path: '/form-playground',
+        element: <FormPlayground />
       }
     ]
   }
