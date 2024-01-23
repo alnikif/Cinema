@@ -12,6 +12,7 @@ import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
 import styles from './Layout.module.scss';
 import {Link} from "react-router-dom";
+import {it} from "node:test";
 
 export enum NavItems {
   homePage = 'Home Page',
@@ -56,10 +57,17 @@ export const navItemsConfig = [
 
 
 
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
+// const items = new Array(3).fill(null).map((_, index) => ({
+//   key: String(index + 1),
+//   label: `nav ${index + 1}`,
+// }));
+
+const items = navItemsConfig.map((item, index) => ({
+    key: String(index + 1),
+    label: <Link to={item.url}>{item.label}</Link>,
 }));
+
+
 
 const LayoutWrapper: React.FC = () => {
   const {
@@ -88,9 +96,9 @@ const LayoutWrapper: React.FC = () => {
           />
         </Header>
         <Content style={{ padding: '0 48px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            {navItemsConfig.map(el => <Breadcrumb.Item key={el.label} href={el.url}>{el.label}</Breadcrumb.Item>)}
-          </Breadcrumb>
+          {/*<Breadcrumb style={{ margin: '16px 0' }}>*/}
+          {/*  {navItemsConfig.map(el => <Breadcrumb.Item key={el.label} href={el.url}>{el.label}</Breadcrumb.Item>)}*/}
+          {/*</Breadcrumb>*/}
           <div
               style={{
                 padding: 24,
