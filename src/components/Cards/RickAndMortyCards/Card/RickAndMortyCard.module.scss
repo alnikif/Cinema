@@ -6,22 +6,36 @@
   padding-bottom: 7px;
   background-color: white;
   box-shadow: 10px 10px 5px black;
-  .CharacterInfo{
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    div{
-      background-color: #61dafb;
-      color: white;
-      padding: 4px;
-      border-radius: 5px;
-      margin: 5px;
-    }
-  }
-  .link{
-    text-decoration: none;
-  }
-  .CharacterLocation{
-    padding: 5px;
+
+}
+
+.species{
+  background-color: #6370f0;
+  height: 30px;
+}
+
+.CharacterInfo{
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  div{
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 5px;
   }
 }
+.link{
+  text-decoration: none;
+}
+.CharacterLocation{
+  padding: 5px;
+}
+.location{
+  background-color: deeppink;
+}
+img{
+  height: 250px;
+  width: auto;
+}
+

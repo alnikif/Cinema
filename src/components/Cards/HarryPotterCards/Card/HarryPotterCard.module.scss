@@ -6,10 +6,6 @@
   padding-bottom: 7px;
   background-color: white;
   box-shadow: 10px 10px 5px black;
-  img{
-    height: 130px;
-    width: auto;
-  }
   .link{
     text-decoration: none;
   }
@@ -31,4 +27,8 @@
     border-radius: 5px;
     margin: 5px;
   }
+}
+img{
+  height: 300px;
+  width: auto;
 }

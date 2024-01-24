@@ -1,20 +1,11 @@
 import React from 'react';
+
 import { HarryPotterType } from '../../../../types/harryPotterTypes';
-import styles from './HarryPotterCard.module.scss';
 import { Link } from 'react-router-dom';
-
-
-
 import { Card } from 'antd';
+import styles from './HarryPotterCard.module.scss';
 
 const { Meta } = Card;
-
-
-
-
-
-
-
 
 export const HarryPotterCard: React.FC<{ readonly characterData: HarryPotterType }> = ({ characterData }) => {
   const { id, image, name, gender, species, wizard } = characterData;
@@ -22,7 +13,6 @@ export const HarryPotterCard: React.FC<{ readonly characterData: HarryPotterType
 
 
 <>
-
       <Card
           hoverable
           style={{ width: 240 }}
@@ -41,6 +31,7 @@ export const HarryPotterCard: React.FC<{ readonly characterData: HarryPotterType
           </div>
       </Card>
 
+    {/*Custom card*/}
 
     {/*  */}
     {/*<div className={styles.CharacterCard}>*/}
