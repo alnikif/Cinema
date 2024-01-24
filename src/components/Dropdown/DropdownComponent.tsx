@@ -55,5 +55,4 @@ const DropdownComponent = <T extends unknown>(props: DropdownPropsTypes<T>) => {
         </Dropdown>
     );
 };
-
 export default DropdownComponent;

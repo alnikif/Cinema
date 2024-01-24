@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import uniqBy from 'lodash/uniqBy';
+import { Spin } from 'antd';
 
 import { TableComponent } from '../../components/Table/TableComponent';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
@@ -122,7 +123,7 @@ export const RickAndMorty = () => {
 
             <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
 
-            {loading && <div>Loading...</div>}
+            {loading && <div><Spin /></div>}
         </div>
     );
 };

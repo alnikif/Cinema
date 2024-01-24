@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { Spin } from 'antd';
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryPotterCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
@@ -45,7 +45,7 @@ export const HarryPotter = () => {
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}
 
       <NotificationError title="Fetch Harry Potter error notification" message={error?.message} />
-      {loading && <div>Loading...</div>}
+      {loading && <div><Spin/></div>}
 
     </>
 );

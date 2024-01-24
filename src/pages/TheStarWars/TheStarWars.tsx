@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { StarWarsType } from '../../types/starWarsTypes';
 import { TableComponent } from '../../components/Table/TableComponent';
@@ -7,12 +6,15 @@ import { headerStarWarsRowConfig } from './starWarsTableConfig';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
 import DropdownComponent from '../../components/Dropdown/DropdownComponent';
-import styles from './TheStarWars.module.scss';
 import {getStarWarsList} from "../../api/theStarWars";
+import {Spin} from "antd";
+import styles from './TheStarWars.module.scss';
 
 export const TheStarWars = () => {
   const [starWarsData, setStarWarsData] = useState<StarWarsType[]>([]);
   const { view, setView } = useContext(ViewContext);
+  const [loading, setLoading] = useState(false);
+
 
   const viewsOptions = views.map(({ key, title }) => ({
     id: key,
@@ -20,6 +22,7 @@ export const TheStarWars = () => {
   }));
 
   useEffect(() => {
+    setLoading(true);
     getStarWarsList('all')
       .then((response) => {
         setStarWarsData(response);
@@ -29,7 +32,7 @@ export const TheStarWars = () => {
         }
       })
       .finally(() => {
-        //
+        setLoading(false);
       });
   }, []);
 
@@ -40,6 +43,7 @@ export const TheStarWars = () => {
       </div>
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
       {view === PageViews.table && <TableComponent title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}
+      {loading && <Spin/>}
     </div>
   );
 };
