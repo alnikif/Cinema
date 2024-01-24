@@ -6,7 +6,7 @@ import { TableComponent } from '../../components/Table/TableComponent';
 import { headerStarWarsRowConfig } from './starWarsTableConfig';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import Dropdown from '../../components/Dropdown/Dropdown';
+import DropdownComponent from '../../components/Dropdown/DropdownComponent';
 import styles from './TheStarWars.module.scss';
 import {getStarWarsList} from "../../api/theStarWars";
 
@@ -36,7 +36,7 @@ export const TheStarWars = () => {
   return (
     <div>
       <div className={styles.dropdownViewWrapper}>
-        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+        <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
       {view === PageViews.table && <TableComponent title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}

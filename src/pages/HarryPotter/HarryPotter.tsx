@@ -3,7 +3,7 @@ import axios from 'axios';
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryPotterCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import Dropdown from '../../components/Dropdown/Dropdown';
+import DropdownComponent from '../../components/Dropdown/DropdownComponent';
 import { harryPotterTableConfig } from './harryPotterTableConfig';
 import { TableComponent } from '../../components/Table/TableComponent';
 import styles from './HarryPotter.module.scss';
@@ -39,7 +39,7 @@ export const HarryPotter = () => {
   return (
     <>
       <div className={styles.dropdownViewWrapper}>
-        <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+        <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
       {view === PageViews.table && <TableComponent title="Harry Potter" data={harryPotterData} tableConfig={harryPotterTableConfig} />}
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}

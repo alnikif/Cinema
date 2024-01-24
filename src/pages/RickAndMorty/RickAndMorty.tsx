@@ -9,7 +9,7 @@ import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/Rick
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
 import InfiniteLoader from '../../components/InfiniteLoader/InfiniteLoader';
 import usePagination from '../../hooks/usePagination';
-import Dropdown from '../../components/Dropdown/Dropdown';
+import DropdownComponent from '../../components/Dropdown/DropdownComponent';
 import { Pagination } from '../../components/Pagination/Pagination';
 import styles from './RickAndMorty.module.scss';
 import { PaginationContext, paginations, PaginationTypes } from '../../Providers/PaginationProvider';
@@ -105,10 +105,10 @@ export const RickAndMorty = () => {
         <div ref={setPageRef}>
             <div className={styles.dropdownWrapper}>
                 <div>
-                    <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+                    <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
                 </div>
                 <div>
-                    <Dropdown selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
+                    <DropdownComponent selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
                 </div>
             </div>
 
