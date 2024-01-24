@@ -13,7 +13,7 @@ export const StarWarsCard: React.FC<{ readonly characterData: StarWarsType }> = 
           <Card
               hoverable
               style={{ width: 240 }}
-              cover={<img alt="example" src={image} />}
+              cover={<img alt="example" src={image} style={{ height: 300 }} />}
           >
               <Meta title={<Link to={`/star-wars/${id}`} className={styles.link}>
                   {name}

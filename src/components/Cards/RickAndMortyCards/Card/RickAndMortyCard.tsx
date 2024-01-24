@@ -13,7 +13,7 @@ export const RickAndMortyCard: React.FC<{ readonly characterData: RickAndMortyTy
           <Card
               hoverable
               style={{ width: 240 }}
-              cover={<img alt="example" src={image} />}
+              cover={<img alt="example" src={image} style={{ height: 240 }} />}
           >
               <Meta title={<Link to={`/rick-and-morty/${id}`} className={styles.link}>
                   {name}
