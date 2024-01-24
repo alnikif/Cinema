@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { HeaderRow } from './HeaderRow/HeaderRow';
 import { BodyRows, BodyRowType } from './BodyRows/BodyRows';
 import { CellType } from './CellType';
+
 import styles from './Table.module.scss';
 
 type DataItemType = {
@@ -27,7 +28,7 @@ const NOOP = () => {
   //
 };
 
-export const Table = <T extends DataItemType>(props: TableProps<T>) => {
+export const TableComponent = <T extends DataItemType>(props: TableProps<T>) => {
   const { title, tableConfig, data } = props;
 
   const headerRow = useMemo(() => tableConfig.map(({ id, label }) => ({ id, label })), [tableConfig]);

@@ -55,13 +55,6 @@ export const navItemsConfig = [
 //   );
 // };
 
-
-
-// const items = new Array(3).fill(null).map((_, index) => ({
-//   key: String(index + 1),
-//   label: `nav ${index + 1}`,
-// }));
-
 const items = navItemsConfig.map((item, index) => ({
     key: String(index + 1),
     label: <Link to={item.url}>{item.label}</Link>,

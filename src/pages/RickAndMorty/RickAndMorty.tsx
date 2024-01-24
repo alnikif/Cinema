@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import uniqBy from 'lodash/uniqBy';
 
-import { Table } from '../../components/Table/Table';
+import { TableComponent } from '../../components/Table/TableComponent';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
 import { RickAndMortyListResponseMetaType, RickAndMortyType } from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
@@ -113,7 +113,7 @@ export const RickAndMorty = () => {
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
-            {view === PageViews.table && <Table title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
+            {view === PageViews.table && <TableComponent title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
 
             {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
             {pagination === PaginationTypes.manual && (

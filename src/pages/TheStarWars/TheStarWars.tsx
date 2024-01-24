@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { StarWarsType } from '../../types/starWarsTypes';
-import { Table } from '../../components/Table/Table';
+import { TableComponent } from '../../components/Table/TableComponent';
 import { headerStarWarsRowConfig } from './starWarsTableConfig';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
@@ -39,7 +39,7 @@ export const TheStarWars = () => {
         <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
-      {view === PageViews.table && <Table title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}
+      {view === PageViews.table && <TableComponent title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}
     </div>
   );
 };

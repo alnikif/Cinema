@@ -5,7 +5,7 @@ import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryP
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { harryPotterTableConfig } from './harryPotterTableConfig';
-import { Table } from '../../components/Table/Table';
+import { TableComponent } from '../../components/Table/TableComponent';
 import styles from './HarryPotter.module.scss';
 import {NotificationError} from "../../components/NotificationError/NotificationError";
 import {getHarryPotterList} from "../../api/harryPotter";
@@ -41,7 +41,7 @@ export const HarryPotter = () => {
       <div className={styles.dropdownViewWrapper}>
         <Dropdown selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
-      {view === PageViews.table && <Table title="Harry Potter" data={harryPotterData} tableConfig={harryPotterTableConfig} />}
+      {view === PageViews.table && <TableComponent title="Harry Potter" data={harryPotterData} tableConfig={harryPotterTableConfig} />}
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}
 
       <NotificationError title="Fetch Harry Potter error notification" message={error?.message} />
