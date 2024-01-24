@@ -7,23 +7,28 @@
   background-color: white;
   box-shadow: 10px 10px 5px black;
   overflow: hidden;
-  img{
-    height: 300px;
-    width: auto;
+}
+img{
+  height: 300px;
+  width: auto;
+}
+.link{
+  text-decoration: none;
+}
+.CharacterInfo{
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  div{
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 5px;
   }
-  .link{
-    text-decoration: none;
-  }
-  .CharacterInfo{
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    div{
-      background-color: #61dafb;
-      color: white;
-      padding: 4px;
-      border-radius: 5px;
-      margin: 5px;
-    }
-  }
+}
+.species{
+  background-color: #6370f0;
+}
+.homeworld{
+  background-color: deeppink;
 }
