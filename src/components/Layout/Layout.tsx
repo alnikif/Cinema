@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 // import './index.css';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 
@@ -11,7 +11,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
 import styles from './Layout.module.scss';
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import {it} from "node:test";
 
 export enum NavItems {
@@ -69,7 +69,7 @@ const items = navItemsConfig.map((item, index) => ({
 
 
 
-const LayoutWrapper: React.FC = () => {
+const LayoutWrapper = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -96,9 +96,6 @@ const LayoutWrapper: React.FC = () => {
           />
         </Header>
         <Content style={{ padding: '0 48px' }}>
-          {/*<Breadcrumb style={{ margin: '16px 0' }}>*/}
-          {/*  {navItemsConfig.map(el => <Breadcrumb.Item key={el.label} href={el.url}>{el.label}</Breadcrumb.Item>)}*/}
-          {/*</Breadcrumb>*/}
           <div
               style={{
                 padding: 24,
@@ -107,6 +104,7 @@ const LayoutWrapper: React.FC = () => {
                 borderRadius: borderRadiusLG,
               }}
           >
+              <Outlet/>
             Content
           </div>
         </Content>

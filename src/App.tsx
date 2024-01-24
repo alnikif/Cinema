@@ -9,7 +9,6 @@ const App = () => {
     <Providers>
       <>
         <LayoutWrapper />
-        <Outlet />
       </>
     </Providers>
   );
