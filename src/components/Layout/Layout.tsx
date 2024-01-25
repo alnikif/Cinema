@@ -1,6 +1,6 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 // import './index.css';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme} from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
@@ -41,7 +41,7 @@ export const navItemsConfig = [
 //     label: title
 //   }));
 //
-//   const { theme, setTheme: onChangeTheme } = useContext(ThemeContext);
+// const { theme: selectTheme, setTheme: onChangeTheme } = useContext(ThemeContext);
 //
 //   return (
 //       <div className={styles.layoutWrapper}>
@@ -85,6 +85,8 @@ const LayoutWrapper = () => {
               items={items}
               style={{ flex: 1, minWidth: 0 }}
           />
+             {/*<DropdownComponent selectedOptionId={selectTheme} options={themesOptions} onSelect={onChangeTheme} />*/}
+
         </Header>
         <Content style={{ padding: '0 48px' }}>
           <div

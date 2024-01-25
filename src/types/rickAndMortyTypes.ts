@@ -15,6 +15,7 @@ export type RickAndMortyType = {
   species: string;
   status: string;
   type: string;
+  key: string;
 };
 
 /**

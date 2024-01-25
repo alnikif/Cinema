@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import uniqBy from 'lodash/uniqBy';
-import { Spin } from 'antd';
+import {Space, Spin, Table, TableProps, Tag} from 'antd';
+import { ColumnsType } from 'antd/lib/table/interface';
 
 import { TableComponent } from '../../components/Table/TableComponent';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import { RickAndMortyListResponseMetaType, RickAndMortyType } from '../../types/rickAndMortyTypes';
+import {LocationType, RickAndMortyListResponseMetaType, RickAndMortyType} from '../../types/rickAndMortyTypes';
 import { NotificationError } from '../../components/NotificationError/NotificationError';
 import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/RickAndMortyCards';
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
@@ -15,6 +16,8 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import styles from './RickAndMorty.module.scss';
 import { PaginationContext, paginations, PaginationTypes } from '../../Providers/PaginationProvider';
 import { getRickAndMortyList } from '../../api/rickAndMorty';
+import {CellType} from "../../components/Table/CellType";
+import {Link} from "react-router-dom";
 
 type RickAndMortyResponseType = {
     meta: RickAndMortyListResponseMetaType;
@@ -102,19 +105,77 @@ export const RickAndMorty = () => {
         if (!loading) setPage(nextPage);
     };
 
+    /////////////
+
+    interface DataType {
+        id: number;
+        name: string;
+        gender: string;
+        image: string;
+        species: string;
+        status: string;
+        key: string
+    }
+    const columns: ColumnsType<DataType> = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+            render: (text, record) => record ? <Link to={`${record.id}`}>{text}</Link> : null,
+        },
+        {
+            title: 'Species',
+            dataIndex: 'species',
+            key: 'species',
+        },
+        {
+            title: 'Image',
+            dataIndex: 'image',
+            key: 'image',
+            render: (image)  => <img style={{height: 100}} src={image} />
+        },
+        {
+            title: 'Gender',
+            key: 'gender',
+            dataIndex: 'gender',
+            render: (_, item) => {
+                const color = item.gender == 'Male' ? 'geekblue' : 'volcano';
+
+                return (
+                <Tag color={color}
+                >
+                    {String(item.gender).toUpperCase()}
+                </Tag>
+                )
+            }
+        },
+        {
+            title: 'Status',
+            key: 'status',
+            dataIndex: 'status'
+        },
+    ];
+
+
+
+
+
     return (
         <div ref={setPageRef}>
             <div className={styles.dropdownWrapper}>
                 <div>
                     <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+                    <DropdownComponent selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
                 </div>
                 <div>
-                    <DropdownComponent selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
+                  sds
                 </div>
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
-            {view === PageViews.table && <TableComponent title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}
+            {/*{view === PageViews.table && <TableComponent title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}*/}
+            {view === PageViews.table && <Table dataSource={results} columns={columns} />}
+
 
             {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
             {pagination === PaginationTypes.manual && (
