@@ -167,9 +167,6 @@ export const RickAndMorty = () => {
                     <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
                     <DropdownComponent selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
                 </div>
-                <div>
-                  sds
-                </div>
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
