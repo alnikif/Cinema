@@ -12,7 +12,7 @@ import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
 import InfiniteLoader from '../../components/InfiniteLoader/InfiniteLoader';
 import usePagination from '../../hooks/usePagination';
 import DropdownComponent from '../../components/Dropdown/DropdownComponent';
-import { Pagination } from '../../components/Pagination/Pagination';
+import { PaginationComponent } from '../../components/Pagination/PaginationComponent';
 import styles from './RickAndMorty.module.scss';
 import { PaginationContext, paginations, PaginationTypes } from '../../Providers/PaginationProvider';
 import { getRickAndMortyList } from '../../api/rickAndMorty';
@@ -173,10 +173,9 @@ export const RickAndMorty = () => {
             {/*{view === PageViews.table && <TableComponent title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}*/}
             {view === PageViews.table && <Table dataSource={results} columns={columns} />}
 
-
             {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}
             {pagination === PaginationTypes.manual && (
-                <Pagination loading={loading} pagesLength={meta.pages || 0} currentPage={Number(params.page)} onSelectPage={onSelectPage} />
+                <PaginationComponent loading={loading} pagesLength={meta.pages || 0} currentPage={Number(params.page)} onSelectPage={onSelectPage} />
             )}
 
             <NotificationError title="Fetch Rick and Morty error notification" message={error?.message} />
