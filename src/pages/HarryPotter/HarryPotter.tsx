@@ -62,9 +62,9 @@ export const HarryPotter = () => {
       key: 'species',
     },
     {
-      title: 'Home world',
-      dataIndex: 'homeWorld',
-      key: 'homeWorld',
+      title: 'House',
+      dataIndex: 'house',
+      key: 'house',
     },
     {
       title: 'Image',
@@ -77,7 +77,7 @@ export const HarryPotter = () => {
       key: 'gender',
       dataIndex: 'gender',
       render: (_, item) => {
-        const color = item.gender == 'Male' ? 'geekblue' : 'volcano';
+        const color = item.gender == 'male' ? 'geekblue' : 'volcano';
 
         return (
             <Tag color={color}
