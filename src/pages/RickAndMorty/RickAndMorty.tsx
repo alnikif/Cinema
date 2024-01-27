@@ -156,10 +156,6 @@ export const RickAndMorty = () => {
         },
     ];
 
-
-
-
-
     return (
         <div ref={setPageRef}>
             <div className={styles.dropdownWrapper}>

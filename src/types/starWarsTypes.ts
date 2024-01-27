@@ -20,4 +20,5 @@ export type StarWarsType = {
   species: string;
   wiki: string;
   model: string;
+  key: string;
 };
