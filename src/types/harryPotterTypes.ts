@@ -10,4 +10,5 @@ export type HarryPotterType = {
   image: string;
   wizard: boolean;
   species: string;
+  key: string;
 };
