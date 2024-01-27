@@ -15,7 +15,7 @@ export const HarryPotterCard: React.FC<{ readonly characterData: HarryPotterType
       <Card
           hoverable
           style={{ width: 240 }}
-          cover={<img alt="example" src={image} style={{ height: 300 }} />}
+          cover={<img alt="example" className={styles.img} src={image}  />}
       >
           <Meta title={<Link to={`/harry-potter/${id}`} className={styles.link}>
               {name}
