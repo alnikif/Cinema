@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './NotificationError.module.scss';
+// import styles from './NotificationError.module.scss';
 
-import { Button, notification } from 'antd';
-
+import { notification } from 'antd';
 
 type NotificationProps = {
   readonly title: string;
@@ -19,41 +18,32 @@ export const NotificationError: React.FC<NotificationProps> = ({ message, title 
       isShownRef.current = true;
     }
 
-    const timer = setTimeout(() => {
-      setShowNotification(false);
-    }, 5000);
+    // const timer = setTimeout(() => {
+    //   setShowNotification(false);
+    // }, 5000);
+    //
+    // return () => {
+    //   clearTimeout(timer);
+    // };
+  }, [message]);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [message, showNotification]);
+  const openNotification = () => {
+    notification.error({
+      message: title,
+      description: message,
+      className: 'custom-class',
+      style: {
+        width: 600,
+      },
+      duration: 3,
+    });
+  };
 
-  if (!showNotification) return null;
+  useEffect(() => {
+    if (showNotification) {
+      openNotification();
+    }
+  }, [showNotification]);
 
-  ////
-
-  // const [api, contextHolder] = notification.useNotification();
-  // const openNotification = () => {
-  //   api.open({
-  //     message: 'Notification Title',
-  //     description:
-  //         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-  //     className: 'custom-class',
-  //     style: {
-  //       width: 600,
-  //     },
-  //   });
-  // };
-
-    // if(showNotification){
-    //   openNotification()
-    // }
-    return (
-      // <>
-      //   {contextHolder}</>
-    <div className={styles.notification__container}>
-      <p>{title}</p>
-      <p className={styles.errorMsg}>{message}</p>
-    </div>
-  );
+  return null;
 };
