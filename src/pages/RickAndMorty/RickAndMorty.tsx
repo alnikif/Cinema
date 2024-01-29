@@ -166,7 +166,6 @@ export const RickAndMorty = () => {
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}
-            {/*{view === PageViews.table && <TableComponent title="Rick and Morty" data={results} tableConfig={headerRickAndMortyRowConfig} />}*/}
             {view === PageViews.table && <Table dataSource={results} columns={columns} />}
 
             {pagination === PaginationTypes.infinity && !loading && <InfiniteLoader offset={150} onReached={onEndReached} />}

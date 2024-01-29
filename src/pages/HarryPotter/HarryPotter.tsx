@@ -96,7 +96,6 @@ export const HarryPotter = () => {
       <div className={styles.dropdownViewWrapper}>
         <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
       </div>
-      {/*{view === PageViews.table && <TableComponent title="Harry Potter" data={harryPotterData} tableConfig={harryPotterTableConfig} />}*/}
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}
       {view === PageViews.table && <Table dataSource={harryPotterData} columns={columns} />}
 

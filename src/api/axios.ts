@@ -19,7 +19,6 @@ export const getAxiosGlobalConfig = (baseURL: string) => {
                 return redirectToLogin();
             }
             case 404:
-                // Handle 404 Not Found error
                 console.error('Resource not found:', error.config.url);
                 break;
             default: {

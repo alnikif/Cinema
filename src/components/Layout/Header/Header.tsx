@@ -8,7 +8,6 @@ export type NavItemTypes = {
 };
 
 export const Header: React.FC<NavItemTypes> = ({ navItemsConfig }) => {
-  // const  = props;
   return (
     <>
       <Sidebar navItemsConfig={navItemsConfig} />

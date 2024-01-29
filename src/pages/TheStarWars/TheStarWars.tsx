@@ -105,7 +105,6 @@ export const TheStarWars = () => {
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
       {view === PageViews.table && <Table dataSource={starWarsData} columns={columns} />}
 
-      {/*{view === PageViews.table && <TableComponent title="Star Wars" data={starWarsData} tableConfig={headerStarWarsRowConfig} />}*/}
       {loading && <Spin/>}
     </div>
   );
