@@ -18,7 +18,8 @@ import { PaginationContext, paginations, PaginationTypes } from '../../Providers
 import { getRickAndMortyList } from '../../api/rickAndMorty';
 import {CellType} from "../../components/Table/CellType";
 import {Link} from "react-router-dom";
-import PaginationDropdown from "../../components/Dropdowns/Dropdown/PaginationDropdown/PaginationDropdown";
+import PaginationDropdown from "../../components/Dropdowns/PaginationDropdown/PaginationDropdown";
+import ViewDropdown from "../../components/Dropdowns/ViewDropdown/ViewDropdown";
 
 type RickAndMortyResponseType = {
     meta: RickAndMortyListResponseMetaType;
@@ -45,11 +46,6 @@ export const RickAndMorty = () => {
     const hasNextPage = !!meta.next;
 
     const { view, setView } = useContext(ViewContext);
-
-    const viewsOptions = views.map(({ key, title }) => ({
-        id: key,
-        label: title
-    }));
     const { pagination } = useContext(PaginationContext);
 
 
@@ -155,7 +151,7 @@ export const RickAndMorty = () => {
     return (
         <div ref={setPageRef}>
             <div className={styles.dropdownWrapper}>
-                    <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+                    <ViewDropdown />
                     <PaginationDropdown />
             </div>
 
