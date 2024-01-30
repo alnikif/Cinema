@@ -3,7 +3,7 @@ import {Spin, Table, Tag} from 'antd';
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryPotterCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import DropdownComponent from '../../components/Dropdown/DropdownComponent';
+import DropdownComponent from '../../components/Dropdowns/Dropdown/DropdownComponent';
 import { harryPotterTableConfig } from './harryPotterTableConfig';
 import { TableComponent } from '../../components/Table/TableComponent';
 import styles from './HarryPotter.module.scss';

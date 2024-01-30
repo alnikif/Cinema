@@ -11,13 +11,14 @@ import { RickAndMortyCards } from '../../components/Cards/RickAndMortyCards/Rick
 import { headerRickAndMortyRowConfig } from './rickAndMortyTableConfig';
 import InfiniteLoader from '../../components/InfiniteLoader/InfiniteLoader';
 import usePagination from '../../hooks/usePagination';
-import DropdownComponent from '../../components/Dropdown/DropdownComponent';
+import DropdownComponent from '../../components/Dropdowns/Dropdown/DropdownComponent';
 import { PaginationComponent } from '../../components/Pagination/PaginationComponent';
 import styles from './RickAndMorty.module.scss';
 import { PaginationContext, paginations, PaginationTypes } from '../../Providers/PaginationProvider';
 import { getRickAndMortyList } from '../../api/rickAndMorty';
 import {CellType} from "../../components/Table/CellType";
 import {Link} from "react-router-dom";
+import PaginationDropdown from "../../components/Dropdowns/Dropdown/PaginationDropdown/PaginationDropdown";
 
 type RickAndMortyResponseType = {
     meta: RickAndMortyListResponseMetaType;
@@ -49,13 +50,8 @@ export const RickAndMorty = () => {
         id: key,
         label: title
     }));
+    const { pagination } = useContext(PaginationContext);
 
-    const { pagination, setPagination } = useContext(PaginationContext);
-
-    const paginationOptions = paginations.map(({ key, title }) => ({
-        id: key,
-        label: title
-    }));
 
     const isInfinityPagination = pagination === PaginationTypes.infinity;
 
@@ -159,10 +155,8 @@ export const RickAndMorty = () => {
     return (
         <div ref={setPageRef}>
             <div className={styles.dropdownWrapper}>
-                <div>
                     <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
-                    <DropdownComponent selectedOptionId={pagination} options={paginationOptions} onSelect={setPagination} />
-                </div>
+                    <PaginationDropdown />
             </div>
 
             {view === PageViews.card && <RickAndMortyCards title="Rick and Morty" data={results} />}

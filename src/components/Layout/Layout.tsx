@@ -7,7 +7,7 @@ const { Header, Content, Footer } = Layout;
 
 
 // import { Header } from './Header/Header';
-import DropdownComponent from '../Dropdown/DropdownComponent';
+import DropdownComponent from '../Dropdowns/Dropdown/DropdownComponent';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { themes } from '../../constants/theme';
 import styles from './Layout.module.scss';

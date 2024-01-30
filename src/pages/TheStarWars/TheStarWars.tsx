@@ -5,7 +5,7 @@ import { TableComponent } from '../../components/Table/TableComponent';
 import { headerStarWarsRowConfig } from './starWarsTableConfig';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import DropdownComponent from '../../components/Dropdown/DropdownComponent';
+import DropdownComponent from '../../components/Dropdowns/Dropdown/DropdownComponent';
 import {getStarWarsList} from "../../api/theStarWars";
 import {Spin, Table, Tag} from "antd";
 import styles from './TheStarWars.module.scss';
