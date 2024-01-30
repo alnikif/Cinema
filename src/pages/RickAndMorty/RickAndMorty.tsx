@@ -45,7 +45,7 @@ export const RickAndMorty = () => {
     const { meta, results } = rickAndMortyData;
     const hasNextPage = !!meta.next;
 
-    const { view, setView } = useContext(ViewContext);
+    const { view } = useContext(ViewContext);
     const { pagination } = useContext(PaginationContext);
 
 

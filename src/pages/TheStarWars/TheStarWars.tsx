@@ -11,10 +11,11 @@ import {Spin, Table, Tag} from "antd";
 import styles from './TheStarWars.module.scss';
 import {ColumnsType} from "antd/lib/table/interface";
 import {Link} from "react-router-dom";
+import ViewDropdown from "../../components/Dropdowns/ViewDropdown/ViewDropdown";
 
 export const TheStarWars = () => {
   const [starWarsData, setStarWarsData] = useState<StarWarsType[]>([]);
-  const { view, setView } = useContext(ViewContext);
+  const { view } = useContext(ViewContext);
   const [loading, setLoading] = useState(false);
 
 
@@ -38,8 +39,6 @@ export const TheStarWars = () => {
       });
   }, []);
 
-
-  ///////////
   interface DataType {
     id: number;
     name: string;
@@ -96,11 +95,10 @@ export const TheStarWars = () => {
     },
   ];
 
-
   return (
     <div>
       <div className={styles.dropdownViewWrapper}>
-        <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+        <ViewDropdown />
       </div>
       {view === PageViews.card && <StarWarsCards title="The Star Wars" data={starWarsData} />}
       {view === PageViews.table && <Table dataSource={starWarsData} columns={columns} />}

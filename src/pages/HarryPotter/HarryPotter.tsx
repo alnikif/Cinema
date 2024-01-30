@@ -11,18 +11,14 @@ import {NotificationError} from "../../components/NotificationError/Notification
 import {getHarryPotterList} from "../../api/harryPotter";
 import {ColumnsType} from "antd/lib/table/interface";
 import {Link} from "react-router-dom";
+import ViewDropdown from "../../components/Dropdowns/ViewDropdown/ViewDropdown";
 
 export const HarryPotter = () => {
   const [harryPotterData, setHarryPotterData] = useState<HarryPotterType[] | []>([]);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const { view, setView } = useContext(ViewContext);
-
-  const viewsOptions = views.map(({ key, title }) => ({
-    id: key,
-    label: title
-  }));
+  const { view } = useContext(ViewContext);
 
   useEffect(() => {
     getHarryPotterList().then((response) => {
@@ -39,7 +35,6 @@ export const HarryPotter = () => {
   }, []);
 
 
-  ////////////
   interface DataType {
     id: string;
     name: string;
@@ -94,7 +89,7 @@ export const HarryPotter = () => {
   return (
     <>
       <div className={styles.dropdownViewWrapper}>
-        <DropdownComponent selectedOptionId={view} options={viewsOptions} onSelect={setView} />
+        <ViewDropdown />
       </div>
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}
       {view === PageViews.table && <Table dataSource={harryPotterData} columns={columns} />}

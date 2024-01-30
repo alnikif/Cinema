@@ -1,18 +1,9 @@
-import React, {ReactNode, useContext} from 'react';
-// import './index.css';
+import React from 'react';
+
 import { Layout, Menu, theme} from 'antd';
+import {Link, Outlet} from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
-
-
-
-// import { Header } from './Header/Header';
-import DropdownComponent from '../Dropdowns/Dropdown/DropdownComponent';
-import { ThemeContext } from '../../Providers/ThemeProvider';
-import { themes } from '../../constants/theme';
-import styles from './Layout.module.scss';
-import {Link, Outlet} from "react-router-dom";
-import {it} from "node:test";
 
 export enum NavItems {
   homePage = 'Home Page',
@@ -35,32 +26,10 @@ export const navItemsConfig = [
   { label: NavItems.formPlayground, url: '/form-playground' }
 ];
 
-// export const Layout = () => {
-//   const themesOptions = themes.map(({ key, title }) => ({
-//     id: key,
-//     label: title
-//   }));
-//
-// const { theme: selectTheme, setTheme: onChangeTheme } = useContext(ThemeContext);
-//
-//   return (
-//       <div className={styles.layoutWrapper}>
-//         <div className={styles.headerWrapper}>
-//           <Header navItemsConfig={navItemsConfig} />
-//         </div>
-//         <div className={styles.dropdownThemeWrapper}>
-//           <Dropdown selectedOptionId={theme} options={themesOptions} onSelect={onChangeTheme} />
-//         </div>
-//       </div>
-//   );
-// };
-
 const items = navItemsConfig.map((item, index) => ({
     key: String(index + 1),
     label: <Link to={item.url}>{item.label}</Link>,
 }));
-
-
 
 const LayoutWrapper = () => {
   const {
@@ -85,7 +54,6 @@ const LayoutWrapper = () => {
               items={items}
               style={{ flex: 1, minWidth: 0 }}
           />
-             {/*<DropdownComponent selectedOptionId={selectTheme} options={themesOptions} onSelect={onChangeTheme} />*/}
 
         </Header>
         <Content style={{ padding: '0 48px' }}>
