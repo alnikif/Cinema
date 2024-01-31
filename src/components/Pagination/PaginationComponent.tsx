@@ -8,6 +8,7 @@ export type PaginationPropsType = {
     readonly currentPage: number;
     readonly loading: boolean;
     readonly onSelectPage: (nextPage: number) => void;
+    readonly pageSize:number;
 };
 
 export const PaginationComponent: FC<PaginationPropsType> = (props) => {
