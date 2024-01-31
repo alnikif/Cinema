@@ -39,18 +39,10 @@ const LayoutWrapper = () => {
         <Layout>
             <Header
                 className={styles.headerContainer}
-                style={{
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 1,
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                }}
             >
-                <Menu theme="dark" mode="horizontal" items={items} style={{ flex: 1, minWidth: 0 }} />
+                <Menu className={styles.menuContainer} theme="dark" mode="horizontal" items={items} />
             </Header>
-            <Content style={{ padding: '0 48px' }}>
+            <Content className={styles.contentWrapper}>
                 <div className={styles.contentContainer}>
                     <Outlet />
                 </div>
