@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import { useParams } from 'react-router-dom';
 import { StarWarsType } from '../../types/starWarsTypes';
 import { TheStarWarsCharacter } from './TheStarWarsCharacter/TheStarWarsCharacter';
@@ -28,8 +26,6 @@ export const TheStarWarsCharacterPage = () => {
         setLoading(false);
       });
   }, [characterId]);
-
-  console.log(starWarsCharacter);
 
   if (loading) {
     return <div>Loading...</div>;

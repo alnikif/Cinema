@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import styles from './NotificationError.module.scss';
-
 import { notification } from 'antd';
 
 type NotificationProps = {
@@ -17,14 +15,6 @@ export const NotificationError: React.FC<NotificationProps> = ({ message, title 
       setShowNotification(true);
       isShownRef.current = true;
     }
-
-    // const timer = setTimeout(() => {
-    //   setShowNotification(false);
-    // }, 5000);
-    //
-    // return () => {
-    //   clearTimeout(timer);
-    // };
   }, [message]);
 
   const openNotification = () => {

@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {Spin, Table, Tag} from 'antd';
+import {Spin, Table} from 'antd';
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCards } from '../../components/Cards/HarryPotterCards/HarryPotterCards';
 import { PageViews, ViewContext, views } from '../../Providers/ViewProvider';
-import DropdownComponent from '../../components/Dropdowns/Dropdown/DropdownComponent';
-import { harryPotterTableConfig } from './harryPotterTableConfig';
-import { TableComponent } from '../../components/Table/TableComponent';
-import styles from './HarryPotter.module.scss';
 import {NotificationError} from "../../components/NotificationError/NotificationError";
 import {getHarryPotterList} from "../../api/harryPotter";
-import {ColumnsType} from "antd/lib/table/interface";
-import {Link} from "react-router-dom";
+import {harryPotterColumns} from "./harryPotterColumns";
 import ViewDropdown from "../../components/Dropdowns/ViewDropdown/ViewDropdown";
+
+import styles from './HarryPotter.module.scss';
 
 export const HarryPotter = () => {
   const [harryPotterData, setHarryPotterData] = useState<HarryPotterType[] | []>([]);
@@ -34,65 +31,13 @@ export const HarryPotter = () => {
     });
   }, []);
 
-
-  interface DataType {
-    id: string;
-    name: string;
-    gender: string;
-    image: string;
-    species: string;
-    house: string;
-    key: string;
-  }
-  const columns: ColumnsType<DataType> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text, record) => record ? <Link to={`${record.id}`}>{text}</Link> : null,
-    },
-    {
-      title: 'Species',
-      dataIndex: 'species',
-      key: 'species',
-    },
-    {
-      title: 'House',
-      dataIndex: 'house',
-      key: 'house',
-    },
-    {
-      title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
-      render: (image)  => <img style={{height: 100}} src={image} />
-    },
-    {
-      title: 'Gender',
-      key: 'gender',
-      dataIndex: 'gender',
-      render: (_, item) => {
-        const color = item.gender == 'male' ? 'geekblue' : 'volcano';
-
-        return (
-            <Tag color={color}
-            >
-              {String(item.gender).toUpperCase()}
-            </Tag>
-        )
-      }
-    },
-  ];
-
-
-
   return (
     <>
       <div className={styles.dropdownViewWrapper}>
         <ViewDropdown />
       </div>
       {view === PageViews.card && <HarryPotterCards data={harryPotterData} title="Harry Potter" />}
-      {view === PageViews.table && <Table dataSource={harryPotterData} columns={columns} />}
+      {view === PageViews.table && <Table dataSource={harryPotterData} columns={harryPotterColumns} />}
 
       <NotificationError title="Fetch Harry Potter error notification" message={error?.message} />
       {loading && <div><Spin/></div>}

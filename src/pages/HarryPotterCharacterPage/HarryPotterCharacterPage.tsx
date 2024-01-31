@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
 import { HarryPotterType } from '../../types/harryPotterTypes';
 import { HarryPotterCharacter } from './HarryPotterCharacter/HarryPotterCharacter';
 import {getHarryPotterCharacter} from "../../api/harryPotter";
