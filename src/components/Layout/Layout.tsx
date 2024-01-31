@@ -1,8 +1,11 @@
 import React from 'react';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 import { Link, Outlet } from 'react-router-dom';
 import { BaseUrlsEnum } from '../../constants/routerConstants';
+
+import styles from './Layout.module.scss';
+
 
 export enum NavItems {
     homePage = 'Home Page',
@@ -31,13 +34,11 @@ const items = navItemsConfig.map((item, index) => ({
 }));
 
 const LayoutWrapper = () => {
-    const {
-        token: { colorBgContainer, borderRadiusLG }
-    } = theme.useToken();
 
     return (
         <Layout>
             <Header
+                className={styles.headerContainer}
                 style={{
                     position: 'sticky',
                     top: 0,
@@ -48,17 +49,9 @@ const LayoutWrapper = () => {
                 }}
             >
                 <Menu theme="dark" mode="horizontal" items={items} style={{ flex: 1, minWidth: 0 }} />
-                {/*<DropdownComponent selectedOptionId={selectTheme} options={themesOptions} onSelect={onChangeTheme} />*/}
             </Header>
             <Content style={{ padding: '0 48px' }}>
-                <div
-                    style={{
-                        padding: 24,
-                        minHeight: 380,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG
-                    }}
-                >
+                <div className={styles.contentContainer}>
                     <Outlet />
                 </div>
             </Content>

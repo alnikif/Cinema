@@ -1,8 +1,6 @@
 import DropdownComponent from "../Dropdown/DropdownComponent";
-import React, {useContext} from "react";
-import {PaginationContext, paginations} from "../../../Providers/PaginationProvider";
-
-
+import React, { useContext } from "react";
+import { PaginationContext, paginations } from "../../../Providers/PaginationProvider";
 
 const PaginationDropdown = () => {
     const { pagination, setPagination } = useContext(PaginationContext);
