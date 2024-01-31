@@ -1,33 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { StarWarsType } from '../../types/starWarsTypes';
+import React, { useContext } from 'react';
 import { StarWarsCards } from '../../components/Cards/StarWarsCards/StarWarsCards';
 import { PageViews, ViewContext } from '../../Providers/ViewProvider';
-import { getStarWarsList } from "../../api/theStarWars";
 import { Spin, Table } from "antd";
 import ViewDropdown from "../../components/Dropdowns/ViewDropdown/ViewDropdown";
 import {theStarWarsColumns} from "./theStarWarsColumns";
 
 import styles from './TheStarWars.module.scss';
+import useTheStarWarsData from "./useTheStarWarsData";
 
 export const TheStarWars = () => {
-  const [starWarsData, setStarWarsData] = useState<StarWarsType[]>([]);
   const { view } = useContext(ViewContext);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    getStarWarsList('all')
-      .then((response) => {
-        setStarWarsData(response);
-      })
-      .catch((apiError: unknown) => {
-        if (apiError instanceof Error) {
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const {
+    starWarsData,
+    loading,
+  } = useTheStarWarsData();
 
   return (
     <div>
